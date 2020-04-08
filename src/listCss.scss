@@ -1,3 +1,35 @@
+
+
 .IconButton{
     font-size: 1px;
+}
+@import url('https://fonts.googleapis.com/css?family=Signika');
+
+.main-nav {
+    text-decoration: none;
+    font-size: x-large;
+    align-self: flex-end;
+
+    .principalButton {
+        margin: 0em;
+        
+          background-color:#44c767;
+          border:2px solid #18ab29;
+          cursor:pointer;
+          color:#ffffff;
+          font-family:Arial;
+          font-size:15px;
+          padding:32px 31px;
+          text-decoration:none;
+          text-shadow:0px 1px 23px #2f6627;
+      }
+      .principalButton:hover {
+          background-color:#5cbf2a;
+      }
+      
+}
+
+.main-nav-active{
+    background-color: red;
+    color: green;
 }

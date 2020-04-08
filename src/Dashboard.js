@@ -148,14 +148,13 @@ export default function Dashboard() {
             The master life!
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+            
           </IconButton>
         </Toolbar>
       </AppBar>
       <Router>
       <Drawer
+       onClick={handleDrawerClose}
         variant="permanent"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
@@ -170,7 +169,7 @@ export default function Dashboard() {
         <Divider />
         <List>{mainListItems}</List>
       </Drawer>
-        <main className={classes.content}>
+        <main className={classes.content} onClick={handleDrawerClose}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>

@@ -10,12 +10,13 @@ import UserCard from './gui/UserCard'
 export default class User extends React.Component{
 
     render(){
+        
         return(
             <div>
                <React.Fragment>
       <CssBaseline />
       <Container maxWidth="sm">
-       {UserCard(data[0])}
+       <UserCard data={data[0]}/>
         
       </Container>
     </React.Fragment>

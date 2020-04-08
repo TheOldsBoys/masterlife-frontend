@@ -28,7 +28,7 @@ function renderChallengeItem(entry){
  const challInfoButton= <ListItemText primary={challInfo} />
    if(entry.Nome !== "") return ( 
     
-  <ListItem >
+  <ListItem key={entry.ID}>
     <ListItemAvatar>
     <Avatar>
       <ImageIcon />
