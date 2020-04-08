@@ -19,6 +19,7 @@
     "recharts": "^1.8.5"
   },
   "scripts": {
+    "local": "react-scripts start",
      "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",

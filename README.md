@@ -11,6 +11,6 @@ Pagine da creare:
 
 Per rendere operativa l'app è necessario aver installato nodeJS, ed eseguire "npm install" nella cartella di root del progetto.
 
-Dopo aver installato basta "npm start" per far partire l'applicazione sulla porta 3000.
+Dopo aver installato basta "npm local" per far partire l'applicazione sulla porta 3000.
 
 Happy coding :D
