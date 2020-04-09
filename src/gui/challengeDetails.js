@@ -16,6 +16,9 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import ChallengeUploadPanel from './challengeUpload'
 
 const styles = (theme) => ({
     root: {
@@ -59,6 +62,8 @@ const styles = (theme) => ({
 
 export default function SimpleDialog({open,onClose,selectedValue}) {
 
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const handleClose = () => { 
       onClose();
   };
@@ -66,7 +71,7 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
 
 
   return (
-       <Dialog fullscreen onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+       <Dialog fullscreen={fullScreen} onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
     {selectedValue.Nome} ( lv. {selectedValue.lv} - {selectedValue.pt} pt )
   </DialogTitle>
@@ -74,11 +79,11 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
     <Typography gutterBottom>
      {selectedValue.Descr}
     </Typography>
-    
+    <ChallengeUploadPanel data={selectedValue}/>
   </DialogContent>
   <DialogActions>
     <Button autoFocus onClick={handleClose} color="primary">
-      Save changes
+      Chiudi
     </Button>
   </DialogActions>
 </Dialog>

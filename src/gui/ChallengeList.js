@@ -34,7 +34,7 @@ function renderChallengeListItem(entry, handleClickOpen){
       <ImageIcon />
     </Avatar>
   </ListItemAvatar>
-  <ListItemText primary={Title} secondary={entry.Descr} />
+  <ListItemText primary={Title} secondary={entry.Descr.substring(0,100)+ '...'} />
   <Divider orientation="vertical" flexItem />   
   
 </ListItem>
