@@ -7,6 +7,7 @@ export default class Challenges extends React.Component {
        
         return(
             <div>
+                <h1>Le sfide ....</h1>
               {ChallengeList(data)}
             </div>
         )
