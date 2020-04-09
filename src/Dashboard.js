@@ -25,6 +25,8 @@ import Challenges from './Challenges'
 import User from './User'
 import FriendsActivity from './FriendsActivity';
 
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -126,7 +128,7 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  
+
   return (
     <div className={classes.root}>
       <CssBaseline />

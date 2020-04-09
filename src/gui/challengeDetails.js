@@ -66,7 +66,7 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
 
 
   return (
-       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+       <Dialog fullscreen onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
     {selectedValue.Nome} ( lv. {selectedValue.lv} - {selectedValue.pt} pt )
   </DialogTitle>
