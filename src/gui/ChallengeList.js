@@ -5,14 +5,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import '../listCss.scss'
+import ChallengeDetails from './challengeDetails'
 
 const classes = makeStyles((theme) => ({
     root: {
@@ -23,30 +21,46 @@ const classes = makeStyles((theme) => ({
     },
   }));
 
-function renderChallengeItem(entry){
- const challInfo = "lv."+ entry.lv+" ("+ entry.pt +"pt)"
- const challInfoButton= <ListItemText primary={challInfo} />
+function renderChallengeListItem(entry, handleClickOpen){
+ const ChallInfo =  "   ( lv."+ entry.lv+" - "+ entry.pt +"pt)"
+
+ const Title =entry.Nome + ChallInfo
+
    if(entry.Nome !== "") return ( 
     
-  <ListItem key={entry.ID}>
+  <ListItem key={entry.ID} onClick={() => handleClickOpen(entry)}>
     <ListItemAvatar>
     <Avatar>
       <ImageIcon />
     </Avatar>
   </ListItemAvatar>
-  <ListItemText primary={entry.Nome} secondary={entry.Descr} />
-  <Divider orientation="vertical" flexItem />
+  <ListItemText primary={Title} secondary={entry.Descr} />
+  <Divider orientation="vertical" flexItem />   
+  
 </ListItem>
     )
 }
 
 
-export default function ChallengeList(lista){
+export default function ChallengeList({data}){
 
-const renderedList = lista.map(l => renderChallengeItem(l))
+const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(data[2]);
+
+  const handleClickOpen = (l) => {
+    setOpen(true);
+    setSelectedValue(l);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const renderedList = data.map(l => renderChallengeListItem(l,handleClickOpen))
+
     return(
         <List className={classes.root}>
        {renderedList}
+       <ChallengeDetails open={open} onClose={handleClose} selectedValue={selectedValue} />
               </List>
     )
 }
