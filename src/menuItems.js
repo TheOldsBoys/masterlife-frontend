@@ -6,15 +6,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import {NavLink} from 'react-router-dom'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import './listCss.scss'
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   root: {
     font:"inherit"
-    }
-
+    },
+  icon: {
+    fontsize:40
   }
-));
+  }
+);
 export const mainListItems = (
   <div>
     
@@ -22,8 +25,8 @@ export const mainListItems = (
       
     <NavLink to="/all_challenges" activeClassName="main-nav-active" className="main-nav">
     <ListItem button className="principalButton">
-      <ListItemIcon>
-        <DashboardIcon/>
+      <ListItemIcon >
+        <DashboardIcon />
         </ListItemIcon>
      Sfide!
      </ListItem>
@@ -31,7 +34,7 @@ export const mainListItems = (
     <NavLink activeClassName="main-nav-active" className="main-nav" to="/user">
     <ListItem button className="principalButton">
       <ListItemIcon>
-        <ShoppingCartIcon />
+      <AccountCircleIcon />
         </ListItemIcon>
       Profilo
     </ListItem></NavLink>

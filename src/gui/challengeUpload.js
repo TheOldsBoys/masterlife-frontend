@@ -9,8 +9,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
 import TextField from '@material-ui/core/TextField';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import { GridList } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,12 +51,7 @@ export default function ChallengeUploadPanel({data}) {
       else
       return("Carica la tua SFIDA!")
   }
-  const disable = (compl) => {
-    if(compl)
-    return( 'disabled' )
-      else
-      return("")
-  }
+
   return (
     <div className={classes.root}>
       <ExpansionPanel disabled={data.completata}>

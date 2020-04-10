@@ -97,6 +97,7 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(9),
     },
   },
+
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -166,7 +167,9 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List classes={clsx(!open && classes.iconClosed)
+        }>
+              {mainListItems}</List>
       </Drawer>
         <main id="main-container" className={classes.content} onClick={handleDrawerClose}>
           <div className={classes.appBarSpacer} />

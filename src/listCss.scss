@@ -18,10 +18,14 @@
           cursor:pointer;
           color:#ffffff;
           font-family:Arial;
-          font-size:15px;
+          font-size:24px;
          // padding:32px 31px;
           text-decoration:none;
           text-shadow:0px 1px 23px #2f6627;
+          .MuiSvgIcon-root{
+              height: 3em;
+              width: 3em;
+          }
       }
       .principalButton:hover {
           background-color:#5cbf2a;
@@ -29,10 +33,10 @@
       
 }
 
-.main-nav-active{
-    background-color: red;
-    color: green;
+.makeStyles-drawerPaperClose-10 .principalButton{
+    padding-left: 0;
 }
+
 
 .listChallenges{
     

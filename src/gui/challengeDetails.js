@@ -1,11 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,7 +17,9 @@ import ChallengeUploadPanel from './challengeUpload'
 const styles = (theme) => ({
     root: {
       margin: 0,
+      marginRight: 50,
       padding: theme.spacing(2),
+      minWidth: 600
     },
     closeButton: {
       position: 'absolute',
@@ -33,17 +29,23 @@ const styles = (theme) => ({
     },
   });
   
+  const DialogTitleS = withStyles((theme) => ({
+    root: {
+      padding: theme.spacing(1),
+    },
+  }))(MuiDialogTitle);
+
   const DialogTitle = withStyles(styles)((props) => {
     const { children, classes, onClose, ...other } = props;
     return (
-      <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <DialogTitleS disableTypography className={classes.root} {...other}>
         <Typography variant="h6">{children}</Typography>
         {onClose ? (
           <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
             <CloseIcon />
           </IconButton>
         ) : null}
-      </MuiDialogTitle>
+      </DialogTitleS>
     );
   });
   
@@ -71,7 +73,7 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
 
 
   return (
-       <Dialog fullscreen={fullScreen} onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
     {selectedValue.Nome} ( lv. {selectedValue.lv} - {selectedValue.pt} pt )
   </DialogTitle>
