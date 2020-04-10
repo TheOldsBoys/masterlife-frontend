@@ -8,6 +8,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import {NavLink} from 'react-router-dom'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import './listCss.scss'
+import sfide_icon from './gui/logo.png'
 
 const styles = (theme) => ({
   root: {
@@ -26,7 +27,7 @@ export const mainListItems = (
     <NavLink to="/all_challenges" activeClassName="main-nav-active" className="main-nav">
     <ListItem button className="principalButton">
       <ListItemIcon >
-        <DashboardIcon />
+      <img src={sfide_icon} alt="Logo" /> 
         </ListItemIcon>
      Sfide!
      </ListItem>
