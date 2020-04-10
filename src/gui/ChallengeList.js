@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import '../listCss.scss'
 import ChallengeDetails from './challengeDetails'
+import CheckIcon from '@material-ui/icons/Check';
 
 const classes = makeStyles((theme) => ({
     root: {
@@ -23,7 +24,10 @@ const classes = makeStyles((theme) => ({
 
 function renderChallengeListItem(entry, handleClickOpen){
  const ChallInfo =  "   ( lv."+ entry.lv+" - "+ entry.pt +"pt)"
-
+  const completed = (compl) => {
+    if(compl)
+    return(<CheckIcon/>)
+  }
  const Title =entry.Nome + ChallInfo
 
    if(entry.Nome !== "") return ( 
@@ -36,6 +40,7 @@ function renderChallengeListItem(entry, handleClickOpen){
   </ListItemAvatar>
   <ListItemText primary={Title} secondary={entry.Descr.substring(0,100)+ '...'} />
   <Divider orientation="vertical" flexItem />   
+   <ListItemSecondaryAction>{completed(entry.completata)}</ListItemSecondaryAction>
   
 </ListItem>
     )

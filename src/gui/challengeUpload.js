@@ -47,16 +47,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChallengeUploadPanel({data}) {
   const classes = useStyles();
-
+  const completed = (compl) => {
+    if(compl)
+    return( "sfida già completata!" )
+      else
+      return("Carica la tua SFIDA!")
+  }
+  const disable = (compl) => {
+    if(compl)
+    return( 'disabled' )
+      else
+      return("")
+  }
   return (
     <div className={classes.root}>
-      <ExpansionPanel>
+      <ExpansionPanel disabled={data.completata}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Carica la tua SFIDA!</Typography>
+          <Typography className={classes.heading}>{completed(data.completata)}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
         <div className={classes.allWidht}>
