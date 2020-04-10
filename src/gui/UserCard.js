@@ -63,17 +63,17 @@ export default function UserCard({data}){
       <CardContent>
         <Avatar className={styles.avatar} src={'https://i.pravatar.cc/300/'} />
         <h3 className={styles.heading}>{data.username}</h3>
-        <span className={styles.subheader}>{data.name}</span>
+        <span className={styles.subheader}>{data.nome}</span>
       </CardContent>
       <Divider light />
       <Box display={'flex'}>
         <Box p={2} flex={'auto'} className={borderedGridStyles.item}>
           <p className={styles.statLabel}>Punti</p>
-          <p className={styles.statValue}>6941</p>
+          <p className={styles.statValue}>{data.punteggio}</p>
         </Box>
         <Box p={2} flex={'auto'} className={borderedGridStyles.item}>
-          <p className={styles.statLabel}>Sfide Completate</p>
-          <p className={styles.statValue}>12</p>
+          <p className={styles.statLabel}>Livello</p>
+          <p className={styles.statValue}>{data.ID_lv}</p>
         </Box>
       </Box>
     </Card>

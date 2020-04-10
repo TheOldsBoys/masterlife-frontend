@@ -15,6 +15,11 @@ import { GridList } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    
+  },
+  
+  input: {
+    display: 'none',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -26,13 +31,11 @@ const useStyles = makeStyles((theme) => ({
 
   },
   textField: {
+    
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
-      width: '100ch',
     },
-  },
-  grid: {
-    width:'lg'
+    width : '100%'
   },
   allWidht:{
     flexGrow: 1,
@@ -57,25 +60,40 @@ export default function ChallengeUploadPanel({data}) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
         <div className={classes.allWidht}>
-          <Grid
-  container 
+          <Grid key='0'
+  container = 'true'
   direction="column"
-  justify="center"
-  alignItems="center"
+  xs='12'
+  spacing='2'
 >
 <Grid key={1} item>  Descrizione : </Grid>
-<Grid key={2} item>
+<Grid key={2} item sm='12'>
               
            <TextField
            className={classes.textField}
           id="outlined-textarea"
-          label="Multiline Placeholder"
+          label="Descrizione dello svolgimento"
           placeholder="Placeholder"
           multiline
           variant="outlined"
+          width='100%'
         /></Grid>
 
-<Grid key={2} item>
+<Grid key={3} item>
+<input
+        accept="video/*"
+        className={classes.input}
+        id="contained-button-file"
+        multiple
+        type="file"
+      />
+      <label htmlFor="contained-button-file">
+        <Button variant="contained" color="primary" component="span">
+          Carica il video
+        </Button>
+      </label>
+    </Grid>
+    <Grid key={4} item>
     <Button autoFocus color="primary">
       Save changes
     </Button>
