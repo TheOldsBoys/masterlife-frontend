@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {auth} from './Auth'
 
 function Copyright() {
   return (
@@ -88,11 +89,12 @@ export default function SignIn() {
             label="Remember me"
           />
           <Button
-            type="submit"
+       //     type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={auth('Gabbopeace','gabbopeace')}
           >
             Sign In
           </Button>

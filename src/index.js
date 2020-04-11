@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Dashboard from './Dashboard';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import isAuth from './Auth'
 
 import {
   BrowserRouter,
@@ -11,7 +12,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-console.log("window.React1 === window.React2");
+console.log(window.React1 === window.React2);
 
 
 ReactDOM.render(
@@ -41,7 +42,7 @@ function PrivateRoute({ children, ...rest }) {
     <Route
       {...rest}
       render={({ location }) =>
-        false ? (
+        isAuth() ? (
           children
         ) : (
           <Redirect
