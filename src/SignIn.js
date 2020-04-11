@@ -94,7 +94,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={auth('Gabbopeace','gabbopeace')}
+            onClick={()=>auth( document.getElementById('email').value, document.getElementById('password').value)}
           >
             Sign In
           </Button>
