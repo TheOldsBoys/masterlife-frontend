@@ -3,6 +3,8 @@ import users from './utenti.json'
 export default function isAuth(){
     if(localStorage.getItem('auth')==='true')
     return true;
+else
+    window.location.href='/login';
 }
 
 function checkDB(u) {if(u.username.toLowerCase() === this.user.toLowerCase() && u.pw===this.password) return true}

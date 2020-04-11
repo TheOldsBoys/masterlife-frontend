@@ -24,6 +24,7 @@ import {
 import Challenges from './Challenges'
 import User from './User'
 import FriendsActivity from './FriendsActivity';
+import isAuth from './Auth'
 
 
 
@@ -129,6 +130,7 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+isAuth();
 
   return (
     <div className={classes.root}>
