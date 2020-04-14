@@ -11,24 +11,31 @@ else
 function checkDB(u) {if(u.username.toLowerCase() === this.user.toLowerCase() && u.pw===this.password) return true}
 
     export function auth(username, pw){
-    var exist = false;
+    let exist = false;
+
+    let details = {
+        'username': username,
+        'password': pw
+    };
+
+    let formBody = [];
+    for (let property in details) {
+        let encodedKey = encodeURIComponent(property);
+        let encodedValue = encodeURIComponent(details[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
 
      // Simple POST request with a JSON body using fetch
      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: {
-            username: "gabbopeace",
-            password: "gabbopeace" }
+        method: "POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+        body: formBody
     };
-    fetch('http://localhost:8080/login', requestOptions)
-        .then(response => console.log(response))
-     //   .then(text => alert(text));
+    fetch('http://localhost:8080/login',requestOptions)
+        .then(response => {
+            if (response.ok === true ){alert ('ok')}
+            localStorage.setItem('auth', response.ok);
+            window.location.href='/';})
     
-
-
-   /* const UserFinded = users.find(checkDB,{user:username, password:pw})
-        if (UserFinded !== undefined ){alert ('ok'); exist=true}
-        localStorage.setItem('auth', exist);*/
-      //  window.location.href='/';
     }
