@@ -74,24 +74,22 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
 
 
   return (
-       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-    {selectedValue.Nome} ( lv. {selectedValue.lv} - {selectedValue.pt} pt )
-  </DialogTitle>
-  <DialogContent dividers>
-    <Typography gutterBottom>
-     {selectedValue.Descr}
-     
-    <YoutubePlayer/>
-    </Typography>
-    <ChallengeUploadPanel data={selectedValue}/>
-  </DialogContent>
-  <DialogActions>
-    <Button autoFocus onClick={handleClose} color="primary">
-      Chiudi
-    </Button>
-  </DialogActions>
-</Dialog>
+    <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        {selectedValue.Nome} ( lv. {selectedValue.lv} - {selectedValue.pt} pt )
+      </DialogTitle>
+      <DialogContent dividers>
+        <Typography gutterBottom>
+          {selectedValue.Descr}
+        </Typography>
+        <ChallengeUploadPanel data={selectedValue}/>
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={handleClose} color="primary">
+          Chiudi
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 

@@ -41,8 +41,7 @@ function renderChallengeListItem(entry, handleClickOpen){
   <ListItemText primary={Title} secondary={entry.Descr.substring(0,100)+ '...'} />
   <Divider orientation="vertical" flexItem />   
    <ListItemSecondaryAction>{completed(entry.completata)}</ListItemSecondaryAction>
-  
-</ListItem>
+  </ListItem>
     )
 }
 

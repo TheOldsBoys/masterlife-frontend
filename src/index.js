@@ -17,20 +17,13 @@ console.log(window.React1 === window.React2);
 
 ReactDOM.render(
   <React.StrictMode>
-   <BrowserRouter>
-   <Switch>
-   <Route exact path="/login">
-            <SignIn/>
-        </Route>
-        <Route path="/signup">
-          <SignUp/>
-          </Route>
-				<PrivateRoute path="/">
-           <Dashboard /> 
-        </PrivateRoute>
-			  </Switch>
-			</BrowserRouter>
-
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/login" component={SignIn}/>
+        <Route path="/signup" component={SignUp}/>
+        <PrivateRoute path="/" component={Dashboard}/>
+      </Switch>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

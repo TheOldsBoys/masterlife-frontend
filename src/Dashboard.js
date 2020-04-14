@@ -130,8 +130,7 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-isAuth();
-
+  isAuth();
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -149,29 +148,27 @@ isAuth();
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             The master life!
           </Typography>
-          <IconButton color="inherit">
-            
-          </IconButton>
+          <IconButton color="inherit"/>
         </Toolbar>
       </AppBar>
       <Router>
-      <Drawer
-       onClick={handleDrawerClose}
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List className={clsx(!open && classes.iconClosed)}>
-              {mainListItems}</List>
-      </Drawer>
+        <Drawer
+          onClick={handleDrawerClose}
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+          open={open}
+          >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
+          <List className={clsx(!open && classes.iconClosed)}>
+                {mainListItems}</List>
+        </Drawer>
         <main id="main-container" className={classes.content} onClick={handleDrawerClose}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>

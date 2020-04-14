@@ -63,51 +63,43 @@ export default function ChallengeUploadPanel({data}) {
           <Typography className={classes.heading}>{completed(data.completata)}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-        <div className={classes.allWidht}>
-          <Grid key='0'
-  container = 'true'
-  direction="column"
-  spacing='2'
->
-<Grid key={1} item>  Descrizione : </Grid>
-<Grid key={2} item 
-  xs={12} sm={12}>
-              
-           <TextField
-           className={classes.textField}
-          id="outlined-textarea"
-          label="Descrizione dello svolgimento"
-          placeholder="Placeholder"
-          multiline
-          variant="outlined"
-          width='100%'
-        /></Grid>
-
-<Grid key={3} item>
-<input
-        accept="video/*"
-        className={classes.input}
-        id="contained-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="contained-button-file">
-        <Button variant="contained" color="primary" component="span">
-          Carica il video
-        </Button>
-      </label>
-    </Grid>
-    <Grid key={4} item>
-    <Button autoFocus color="primary">
-      Save changes
-    </Button>
-    </Grid>
-    </Grid>
-    </div>
+          <div className={classes.allWidht}>
+            <Grid key='0' container = 'true' direction="column" spacing='2'>
+              <Grid key={1} item>  Descrizione : </Grid>
+              <Grid key={2} item xs={12} sm={12}>              
+                <TextField
+                  className={classes.textField}
+                  id="outlined-textarea"
+                  label="Descrizione dello svolgimento"
+                  placeholder="Placeholder"
+                  multiline
+                  variant="outlined"
+                  width='100%'
+                />
+              </Grid>
+              <Grid key={3} item>
+                <input
+                  accept="video/*"
+                  className={classes.input}
+                  id="contained-button-file"
+                  multiple
+                  type="file"
+                />
+                <label htmlFor="contained-button-file">
+                  <Button variant="contained" color="primary" component="span">
+                    Carica il video
+                  </Button>
+                </label>
+              </Grid>
+              <Grid key={4} item>
+                <Button autoFocus color="primary">
+                  Save changes
+                </Button>
+              </Grid>
+            </Grid>
+          </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-     
-   
     </div>
   );
 }
