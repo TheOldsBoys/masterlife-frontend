@@ -169,13 +169,12 @@ isAuth();
           </IconButton>
         </div>
         <Divider />
-        <List classes={clsx(!open && classes.iconClosed)
-        }>
+        <List className={clsx(!open && classes.iconClosed)}>
               {mainListItems}</List>
       </Drawer>
         <main id="main-container" className={classes.content} onClick={handleDrawerClose}>
           <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" minWidth='50vw' className={classes.container}>
+          <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>
               <Grid item xs={12} md={8} lg={9}>
                 <Switch>

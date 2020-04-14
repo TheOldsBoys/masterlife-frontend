@@ -67,10 +67,10 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
           />
           <TextField
@@ -94,7 +94,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={()=>auth( document.getElementById('email').value, document.getElementById('password').value)}
+            onClick={()=>auth( document.getElementById('username').value, document.getElementById('password').value)}
           >
             Sign In
           </Button>

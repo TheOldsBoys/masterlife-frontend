@@ -12,7 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import ChallengeUploadPanel from './challengeUpload'
+import ChallengeUploadPanel from './challengeUpload';
+import YoutubePlayer from './youtubePlayer'
 
 const styles = (theme) => ({
     root: {
@@ -80,6 +81,8 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
   <DialogContent dividers>
     <Typography gutterBottom>
      {selectedValue.Descr}
+     
+    <YoutubePlayer/>
     </Typography>
     <ChallengeUploadPanel data={selectedValue}/>
   </DialogContent>

@@ -67,11 +67,11 @@ export default function ChallengeUploadPanel({data}) {
           <Grid key='0'
   container = 'true'
   direction="column"
-  xs='12'
   spacing='2'
 >
 <Grid key={1} item>  Descrizione : </Grid>
-<Grid key={2} item sm='12'>
+<Grid key={2} item 
+  xs={12} sm={12}>
               
            <TextField
            className={classes.textField}

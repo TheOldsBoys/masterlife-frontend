@@ -1,3 +1,4 @@
+import axios from 'axios'
 import users from './utenti.json'
 
 export default function isAuth(){
@@ -11,8 +12,23 @@ function checkDB(u) {if(u.username.toLowerCase() === this.user.toLowerCase() && 
 
     export function auth(username, pw){
     var exist = false;
-    const UserFinded = users.find(checkDB,{user:username, password:pw})
+
+     // Simple POST request with a JSON body using fetch
+     const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: {
+            username: "gabbopeace",
+            password: "gabbopeace" }
+    };
+    fetch('http://localhost:8080/login', requestOptions)
+        .then(response => console.log(response))
+     //   .then(text => alert(text));
+    
+
+
+   /* const UserFinded = users.find(checkDB,{user:username, password:pw})
         if (UserFinded !== undefined ){alert ('ok'); exist=true}
-        localStorage.setItem('auth', exist);
-        window.location.href='/'
+        localStorage.setItem('auth', exist);*/
+      //  window.location.href='/';
     }
