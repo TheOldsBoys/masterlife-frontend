@@ -64,7 +64,7 @@ export default function ChallengeUploadPanel({data}) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className={classes.allWidht}>
-            <Grid key='0' container = 'true' direction="column" spacing='2'>
+            <Grid key='0' container direction="column" spacing='2'>
               <Grid key={1} item>  Descrizione : </Grid>
               <Grid key={2} item xs={12} sm={12}>              
                 <TextField

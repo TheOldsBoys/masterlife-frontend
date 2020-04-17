@@ -1,14 +1,21 @@
-import axios from 'axios'
-import users from './utenti.json'
 
 export default function isAuth(){
-    if(localStorage.getItem('auth')==='true')
+    if(sessionStorage.getItem('auth')==='true' || sessionStorage.getItem('auth')==='true')
     return true;
 else
     window.location.href='/login';
 }
 
-function checkDB(u) {if(u.username.toLowerCase() === this.user.toLowerCase() && u.pw===this.password) return true}
+function setUpAuthSession(res){
+    sessionStorage.setItem('auth', res.auth);
+    sessionStorage.setItem('id', res.user.id);
+    sessionStorage.setItem('username', res.user.username);
+}
+
+export function logoutSession(){
+    sessionStorage.clear();
+    window.location.href='/login'
+}
 
     export function auth(username, pw){
     let exist = false;
@@ -30,12 +37,23 @@ function checkDB(u) {if(u.username.toLowerCase() === this.user.toLowerCase() && 
      const requestOptions = {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-        body: formBody
+        body: formBody,
+        credentials: 'include'
     };
-    fetch('http://localhost:8080/login',requestOptions)
-        .then(response => {
-            if (response.ok === true ){alert ('ok')}
-            localStorage.setItem('auth', response.ok);
-            window.location.href='/';})
+    fetch('https://api.masterlife.it/login',requestOptions)
+    .then(response =>{
+        if (!response.ok) { throw response }
+        return response.json()  //we only get here if there is no error
+            })
+    .then(data => {
+        if (data.auth === true ){console.log(data)}
+        setUpAuthSession(data)
+        window.location.href='/';
+                    })
+    .catch( err => {
+            console.log(err.status)
+        if(err.status===401)
+            alert("Attenzione: Username o password sbagliati")
+                    })
     
     }

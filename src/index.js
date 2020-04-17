@@ -12,8 +12,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-console.log(window.React1 === window.React2);
-
+//if(process.env.NODE_ENV === 'development')
 
 ReactDOM.render(
   <React.StrictMode>

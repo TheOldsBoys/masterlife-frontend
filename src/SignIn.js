@@ -84,10 +84,6 @@ export default function SignIn() {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
        //     type="submit"
             fullWidth
@@ -100,9 +96,7 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+             
             </Grid>
             <Grid item>
               <Link href="/signup" variant="body2">
@@ -119,3 +113,13 @@ export default function SignIn() {
 
   );
 }
+
+          /* Form per chiedere se l'utente vuole salvare la sessione
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          ------e se ha dimenticato la password
+           <Link href="#" variant="body2">
+                Forgot password?
+              </Link>*/

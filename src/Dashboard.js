@@ -16,6 +16,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from './menuItems';
 
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,6 +27,7 @@ import Challenges from './Challenges'
 import User from './User'
 import FriendsActivity from './FriendsActivity';
 import isAuth from './Auth'
+import {logoutSession} from './Auth'
 
 
 
@@ -148,7 +151,9 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             The master life!
           </Typography>
-          <IconButton color="inherit"/>
+          <IconButton onClick={()=>logoutSession()}color="inherit">
+              <ExitToAppIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Router>
@@ -175,6 +180,9 @@ export default function Dashboard() {
             <Grid container spacing={3}>
               <Grid item xs={12} md={8} lg={9}>
                 <Switch>
+                  <Route exact path="/">
+                   <h2> Benvenuto {sessionStorage.getItem('username')}</h2>
+                  </Route>
                   <Route path="/all_challenges">
                     <Challenges/>
                   </Route>

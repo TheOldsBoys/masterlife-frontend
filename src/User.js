@@ -2,21 +2,40 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import data from './utenti.json'
 import UserCard from './gui/UserCard'
 
 
 
 export default class User extends React.Component{
-
-    render(){
+    constructor(props) {
+        super(props);
+        this.state = {
+            userData: [],
+          };        
+      }
+    componentDidMount() {
+        const requestOptions = {
+            method: "GET",
+            credentials: 'include'
+        };
+        fetch('https://api.masterlife.it/v1/user',requestOptions)
+        .then(data => data.json())
+        .then(userArr => {console.log('userone------------' + userArr.username)
+        this.setState({
+            userData: userArr,
+          });
+    });
         
+    }
+    render(){
+       // alert(this.state.userData.username)
+        let userObj= this.state.userData;
         return(
             <div>
                <React.Fragment>
       <CssBaseline />
       <Container maxWidth="sm">
-       <UserCard data={data[0]}/>
+       <UserCard data={userObj}/>
         
       </Container>
     </React.Fragment>
