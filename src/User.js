@@ -16,9 +16,9 @@ export default class User extends React.Component{
     componentDidMount() {
         const requestOptions = {
             method: "GET",
-            credentials: 'include'
+            credentials: 'include',
         };
-        fetch('https://api.masterlife.it/v1/user',requestOptions)
+        fetch(process.env.REACT_APP_API + process.env.REACT_APP_API_v + 'user',requestOptions)
         .then(data => data.json())
         .then(userArr => {console.log('userone------------' + userArr.username)
         this.setState({

@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import challengeRegister from './challengeRegister'
 
 import TextField from '@material-ui/core/TextField';
 
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+function disable(completed_at){if(completed_at === null) return false; else return true}
 
 export default function ChallengeUploadPanel({data}) {
   const classes = useStyles();
@@ -52,15 +54,17 @@ export default function ChallengeUploadPanel({data}) {
       return("Carica la tua SFIDA!")
   }
 
+  console.log('-------------------')
+  console.log(disable(data.completed_at))
   return (
     <div className={classes.root}>
-      <ExpansionPanel disabled={data.completata}>
+      <ExpansionPanel disabled={disable(data.completed_at)}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>{completed(data.completata)}</Typography>
+          <Typography className={classes.heading}>{completed(disable(data.completed_at))}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className={classes.allWidht}>
@@ -69,7 +73,7 @@ export default function ChallengeUploadPanel({data}) {
               <Grid key={2} item xs={12} sm={12}>              
                 <TextField
                   className={classes.textField}
-                  id="outlined-textarea"
+                  id="description"
                   label="Descrizione dello svolgimento"
                   placeholder="Placeholder"
                   multiline
@@ -79,6 +83,7 @@ export default function ChallengeUploadPanel({data}) {
               </Grid>
               <Grid key={3} item>
                 <input
+                  id="imagelink"
                   accept="video/*"
                   className={classes.input}
                   id="contained-button-file"
@@ -92,7 +97,7 @@ export default function ChallengeUploadPanel({data}) {
                 </label>
               </Grid>
               <Grid key={4} item>
-                <Button autoFocus color="primary">
+                <Button onClick={() => {challengeRegister(data.id,"immagine","video",document.getElementById('description').value)}} autoFocus color="primary">
                   Save changes
                 </Button>
               </Grid>
@@ -103,13 +108,3 @@ export default function ChallengeUploadPanel({data}) {
     </div>
   );
 }
-//how to disable expansion panel per una sfida già compiuta
- /*  <ExpansionPanel disabled>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
-        </ExpansionPanelSummary>
-      </ExpansionPanel>*/

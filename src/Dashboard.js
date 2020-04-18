@@ -14,6 +14,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mainListItems } from './menuItems';
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -29,15 +30,22 @@ import FriendsActivity from './FriendsActivity';
 import isAuth from './Auth'
 import {logoutSession} from './Auth'
 
-
+import defaultTheme from './siteTheme'
+import { ThemeProvider } from '@material-ui/core';
 
 function Copyright() {
   return (
+  <div>
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © gabbo è online '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
+    <Typography variant="body2" color="textSecondary" align="center">
+      Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+      {'.'}
+    </Typography>
+  </div>
   );
 }
 
@@ -83,12 +91,14 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     position: 'relative',
+    paddingTop:'56px',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    background: 'rgba(76, 175, 80, 0.0)',
   },
   drawerPaperClose: {
     overflowX: 'hidden',
@@ -96,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
+    width: theme.spacing(0),
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9),
     },
@@ -132,19 +142,25 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleDrawer = () => {
+    if (open) handleDrawerClose();
+    if (!open) handleDrawerOpen();
+  }
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   isAuth();
   return (
+    
+    <ThemeProvider theme={defaultTheme}>
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar position="absolute" className={clsx(classes.appBar)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            onClick={handleDrawer}
+            className={clsx(classes.menuButton)}
           >
             <MenuIcon />
           </IconButton>
@@ -165,14 +181,11 @@ export default function Dashboard() {
           }}
           open={open}
           >
-          <div className={classes.toolbarIcon}>
-            <IconButton onClick={handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </div>
-          <Divider />
+
           <List className={clsx(!open && classes.iconClosed)}>
                 {mainListItems}</List>
+                
+            <Divider />
         </Drawer>
         <main id="main-container" className={classes.content} onClick={handleDrawerClose}>
           <div className={classes.appBarSpacer} />
@@ -200,7 +213,9 @@ export default function Dashboard() {
             </Box>
           </Container>
         </main>
+        
       </Router>
     </div>
+    </ThemeProvider>
   );
 }

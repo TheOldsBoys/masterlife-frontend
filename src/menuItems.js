@@ -1,9 +1,7 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import { makeStyles } from '@material-ui/core/styles';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import FirstIcon from '@material-ui/icons/SportsHandball';
 import PeopleIcon from '@material-ui/icons/People';
 import {NavLink} from 'react-router-dom'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -27,7 +25,7 @@ export const mainListItems = (
     <NavLink to="/all_challenges" activeClassName="main-nav-active" className="main-nav">
     <ListItem button className="principalButton">
       <ListItemIcon >
-      <img src={sfide_icon} alt="Logo" /> 
+        <FirstIcon />
         </ListItemIcon>
      Sfide!
      </ListItem>

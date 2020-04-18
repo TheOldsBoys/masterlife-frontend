@@ -7,7 +7,6 @@ import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import '../listCss.scss'
 import ChallengeDetails from './challengeDetails'
@@ -23,24 +22,22 @@ const classes = makeStyles((theme) => ({
   }));
 
 function renderChallengeListItem(entry, handleClickOpen){
- const ChallInfo =  "   ( lv."+ entry.lv+" - "+ entry.pt +"pt)"
+ const ChallInfo =  "   ( lv."+ entry.level+" - "+ entry.reward +"pt)"
   const completed = (compl) => {
-    if(compl)
+    if(compl !== null)
     return(<CheckIcon/>)
   }
- const Title =entry.Nome + ChallInfo
+ const Title =entry.name + ChallInfo
 
-   if(entry.Nome !== "") return ( 
+   if(entry.name !== "") return ( 
     
-  <ListItem key={entry.ID} onClick={() => handleClickOpen(entry)}>
+  <ListItem key={entry.id} onClick={() => handleClickOpen(entry)}>
     <ListItemAvatar>
-    <Avatar>
-      <ImageIcon />
-    </Avatar>
+      <ImageIcon color="text"/>
   </ListItemAvatar>
-  <ListItemText primary={Title} secondary={entry.Descr.substring(0,100)+ '...'} />
+  <ListItemText primary={Title} secondary={entry.description.substring(0,100)+ '...'} />
   <Divider orientation="vertical" flexItem />   
-   <ListItemSecondaryAction>{completed(entry.completata)}</ListItemSecondaryAction>
+   <ListItemSecondaryAction>{completed(entry.completed_at)}</ListItemSecondaryAction>
   </ListItem>
     )
 }
@@ -49,7 +46,7 @@ function renderChallengeListItem(entry, handleClickOpen){
 export default function ChallengeList({data}){
 
 const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(data[2]);
+  const [selectedValue, setSelectedValue] = React.useState([]);
 
   const handleClickOpen = (l) => {
     setOpen(true);

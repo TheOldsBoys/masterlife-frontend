@@ -72,15 +72,15 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
   };
 
 
-
+if(open){
   return (
     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        {selectedValue.Nome} ( lv. {selectedValue.lv} - {selectedValue.pt} pt )
+        {selectedValue.name} ( lv. {selectedValue.level} - {selectedValue.reward} pt )
       </DialogTitle>
       <DialogContent dividers>
         <Typography gutterBottom>
-          {selectedValue.Descr}
+          {selectedValue.description}
         </Typography>
         <ChallengeUploadPanel data={selectedValue}/>
       </DialogContent>
@@ -90,7 +90,7 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
         </Button>
       </DialogActions>
     </Dialog>
-  );
+  )} else return null
 }
 
 SimpleDialog.propTypes = {

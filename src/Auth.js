@@ -40,7 +40,7 @@ export function logoutSession(){
         body: formBody,
         credentials: 'include'
     };
-    fetch('https://api.masterlife.it/login',requestOptions)
+    fetch(process.env.REACT_APP_API + 'login',requestOptions)
     .then(response =>{
         if (!response.ok) { throw response }
         return response.json()  //we only get here if there is no error

@@ -12,6 +12,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import AvatarList from './gui/AvatarList'
+
+
+import defaultTheme from './siteTheme'
+import { ThemeProvider } from '@material-ui/core';
 
 function Copyright() {
   return (
@@ -24,6 +29,45 @@ function Copyright() {
       {'.'}
     </Typography>
   );
+}
+
+function sendSignup(username, pw, email){
+  let details = {
+    'username': username,
+    'password': pw,
+    'email': email
+};
+
+let formBody = [];
+for (let property in details) {
+    let encodedKey = encodeURIComponent(property);
+    let encodedValue = encodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+}
+formBody = formBody.join("&");
+
+ // Simple POST request with a JSON body using fetch
+ const requestOptions = {
+    method: "POST",
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+    body: formBody,
+    credentials: 'include'
+};
+fetch(process.env.REACT_APP_API + 'register',requestOptions)
+.then(response =>{
+    if (!response.ok) { throw response }
+    alert('ok!')
+    window.location.href='/login'; //we only get here if there is no error
+        })
+.then(data => {
+    if (data.auth === true ){console.log(data)}
+    window.location.href='/login';
+                })
+.catch( err => {
+        console.log(err.status)
+    if(err.status===401)
+        alert("Attenzione: Username o password sbagliati")
+                })
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +94,8 @@ export default function SignUp() {
   const classes = useStyles();
 
   return (
+    
+    <ThemeProvider theme={defaultTheme}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -61,31 +107,10 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            
+          <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
+                type="email"
                 variant="outlined"
                 required
                 fullWidth
@@ -100,6 +125,17 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
                 name="password"
                 label="Password"
                 type="password"
@@ -107,16 +143,20 @@ export default function SignUp() {
                 autoComplete="current-password"
               />
             </Grid>
-          </Grid>
+            <Grid item xs={12}>
+              <AvatarList />
+            </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-          >
+            onClick={()=>sendSignup( document.getElementById('username').value, document.getElementById('password').value,document.getElementById('email').value)}
+            >
             Sign Up
           </Button>
+          </Grid>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">
@@ -130,5 +170,6 @@ export default function SignUp() {
         <Copyright />
       </Box>
     </Container>
+    </ThemeProvider>
   );
 }

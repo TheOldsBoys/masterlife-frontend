@@ -12,6 +12,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 
+//Settaggio environment var
 //if(process.env.NODE_ENV === 'development')
 
 ReactDOM.render(
