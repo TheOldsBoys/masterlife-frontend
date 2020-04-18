@@ -29,16 +29,15 @@ function renderChallengeListItem(entry, handleClickOpen){
   }
  const Title =entry.name + ChallInfo
 
-   if(entry.name !== "") return ( 
-    
-  <ListItem key={entry.id} onClick={() => handleClickOpen(entry)}>
-    <ListItemAvatar>
-      <ImageIcon color="text"/>
-  </ListItemAvatar>
-  <ListItemText primary={Title} secondary={entry.description.substring(0,100)+ '...'} />
-  <Divider orientation="vertical" flexItem />   
-   <ListItemSecondaryAction>{completed(entry.completed_at)}</ListItemSecondaryAction>
-  </ListItem>
+   if(entry.name !== "") return (  
+    <ListItem key={entry.id} onClick={() => handleClickOpen(entry)}>
+      <ListItemAvatar>
+        <ImageIcon color="primary"/>
+      </ListItemAvatar>
+      <ListItemText primary={Title} secondary={entry.description.substring(0,100)+ '...'} />
+      <Divider orientation="vertical" flexItem />   
+      <ListItemSecondaryAction>{completed(entry.completed_at)}</ListItemSecondaryAction>
+    </ListItem>
     )
 }
 
@@ -58,10 +57,10 @@ const [open, setOpen] = React.useState(false);
 
   const renderedList = data.map(l => renderChallengeListItem(l,handleClickOpen))
 
-    return(
-        <List className={classes.root}>
-       {renderedList}
-       <ChallengeDetails open={open} onClose={handleClose} selectedValue={selectedValue} />
-              </List>
-    )
+  return(
+    <List className={classes.root}>
+      {renderedList}
+      <ChallengeDetails open={open} onClose={handleClose} selectedValue={selectedValue} />
+    </List>
+  )
 }

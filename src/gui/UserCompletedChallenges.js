@@ -1,14 +1,13 @@
 import React from 'react';
 import cx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
-import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider';
 import { useFadedShadowStyles } from '@mui-treasury/styles/shadow/faded';
 import { useGutterBorderedGridStyles } from '@mui-treasury/styles/grid/gutterBordered';
 import { createMuiTheme } from '@material-ui/core/styles';
+
+import ChallengeList from './ChallengeList'
 
 var theme = createMuiTheme();
 
@@ -51,33 +50,20 @@ const useStyles = makeStyles((palette) => ({
   },
 }));
 
-export default function UserCard({data}){
+export default function UserCompletedChallenges({challenges}){
   const styles = useStyles(theme.palette);
   const shadowStyles = useFadedShadowStyles();
   const borderedGridStyles = useGutterBorderedGridStyles({
     borderColor: 'rgba(0, 0, 0, 0.08)',
     height: '50%',
   });
-
-
+  console.log(challenges);
+  
   return (
     <Card className={cx(styles.card, shadowStyles.root)}>
       <CardContent>
-        <Avatar className={styles.avatar} src={ process.env.PUBLIC_URL + '/avatars/png/avatar-0.png'} />
-        <h3 className={styles.heading}>{data.username}</h3>
-        <span className={styles.subheader}>{data.email}</span>
+          <ChallengeList data={challenges}/>
       </CardContent>
-      <Divider light />
-      <Box display={'flex'}>
-        <Box p={2} flex={'auto'} className={borderedGridStyles.item}>
-          <p className={styles.statLabel}>Punti</p>
-          <p className={styles.statValue}>{data.score}</p>
-        </Box>
-        <Box p={2} flex={'auto'} className={borderedGridStyles.item}>
-          <p className={styles.statLabel}>Livello</p>
-          <p className={styles.statValue}>{data.level_id}</p>
-        </Box>
-      </Box>
     </Card>
   );
 };
