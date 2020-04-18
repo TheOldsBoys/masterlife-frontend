@@ -81,20 +81,8 @@ export default function ChallengeUploadPanel({data}) {
                   width='100%'
                 />
               </Grid>
-              <Grid key={3} item>
-                <input
-                  id="imagelink"
-                  accept="video/*"
-                  className={classes.input}
-                  id="contained-button-file"
-                  multiple
-                  type="file"
-                />
-                <label htmlFor="contained-button-file">
-                  <Button variant="contained" color="primary" component="span">
-                    Carica il video
-                  </Button>
-                </label>
+              <Grid key={6} item>                
+                <TextField id="video" placeholder='Incolla qui il link al tuo video' label="Link al tuo video:" />
               </Grid>
               <Grid key={4} item>
                 <Button onClick={() => {challengeRegister(data.id,"immagine","video",document.getElementById('description').value)}} autoFocus color="primary">

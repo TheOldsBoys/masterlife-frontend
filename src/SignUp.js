@@ -18,6 +18,10 @@ import AvatarList from './gui/AvatarList'
 import defaultTheme from './siteTheme'
 import { ThemeProvider } from '@material-ui/core';
 
+function onAvatarClick(i){
+  alert(i)
+}
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -144,7 +148,7 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <AvatarList />
+              <AvatarList onClickHandle={onAvatarClick} />
             </Grid>
           <Button
             type="submit"

@@ -1,14 +1,16 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
+import yellow from '@material-ui/core/colors/yellow';
 
 export default createMuiTheme({
   palette: {
     primary: green,
+    info: yellow,
     secondary: {
-      main: '#f44336',
+      main:yellow[500],
     },
     background:{
-        paper:'#E6D4C3',
+        paper:'#E0EBFF',
      //   default: '#CDB992'
         default: '#FFFCED'
     }
