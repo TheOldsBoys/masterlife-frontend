@@ -8,6 +8,7 @@ import { useGutterBorderedGridStyles } from '@mui-treasury/styles/grid/gutterBor
 import { createMuiTheme } from '@material-ui/core/styles';
 
 import ChallengeList from './ChallengeList'
+import { Paper, Typography } from '@material-ui/core';
 
 var theme = createMuiTheme();
 
@@ -60,10 +61,11 @@ export default function UserCompletedChallenges({challenges}){
   console.log(challenges);
   
   return (
-    <Card className={cx(styles.card, shadowStyles.root)}>
+    <Paper className={cx(styles.card, shadowStyles.root)}>
+      <Typography>Qua puoi visualizzare le sfide che hai già completato!</Typography>
       <CardContent>
           <ChallengeList data={challenges}/>
       </CardContent>
-    </Card>
+    </Paper>
   );
 };

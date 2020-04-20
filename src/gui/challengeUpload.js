@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import challengeRegister from './challengeRegister'
 
 import TextField from '@material-ui/core/TextField';
+import ReactPlayer from 'react-player';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,8 +44,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function disable(completed_at){if(completed_at === null) return false; else return true}
 
+function disable(completed_at){if(completed_at === null) return false; else return true}
+function labelIfCompleted(description,label){if(description!==null)return description; else return label}
+function videoIfCompleted(videolink,completed_at){
+  if(completed_at===null)
+  return(
+  <TextField 
+                  id="video" placeholder='Incolla qui il link al tuo video'
+                  label="Link al tuo video:"/>
+  ); else return (
+    <ReactPlayer
+        url={videolink}
+        width='100%'
+      />
+  )
+  
+}
 export default function ChallengeUploadPanel({data}) {
   const classes = useStyles();
   const completed = (compl) => {
@@ -58,7 +74,7 @@ export default function ChallengeUploadPanel({data}) {
   console.log(disable(data.completed_at))
   return (
     <div className={classes.root}>
-      <ExpansionPanel disabled={disable(data.completed_at)}>
+      <ExpansionPanel disabled={false}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -68,13 +84,14 @@ export default function ChallengeUploadPanel({data}) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className={classes.allWidht}>
-            <Grid key='0' container direction="column" spacing='2'>
+            <Grid key='0' container direction="column" spacing={2}> 
               <Grid key={1} item>  Descrizione : </Grid>
               <Grid key={2} item xs={12} sm={12}>              
                 <TextField
+                  disabled={disable(data.completed_at)}
                   className={classes.textField}
                   id="description"
-                  label="Descrizione dello svolgimento"
+                  label={labelIfCompleted(data.completed_at,"Descrizione dello svolgimento")}
                   placeholder="Placeholder"
                   multiline
                   variant="outlined"
@@ -82,10 +99,10 @@ export default function ChallengeUploadPanel({data}) {
                 />
               </Grid>
               <Grid key={6} item>                
-                <TextField id="video" placeholder='Incolla qui il link al tuo video' label="Link al tuo video:" />
+                {videoIfCompleted("https://www.youtube.com/watch?v=5cHDmZP3UvI",data.completed_at)}
               </Grid>
               <Grid key={4} item>
-                <Button onClick={() => {challengeRegister(data.id,"immagine","video",document.getElementById('description').value)}} autoFocus color="primary">
+                <Button disabled={disable(data.completed_at)} onClick={() => {challengeRegister(data.id,"immagine",document.getElementById('video').value,document.getElementById('description').value)}} autoFocus color="primary">
                   Save changes
                 </Button>
               </Grid>

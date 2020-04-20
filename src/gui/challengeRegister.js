@@ -1,5 +1,6 @@
-export default function challengeRegister(id,imagelink,videolink,description,onSuccess){
-    
+import { confirmAlert } from 'react-confirm-alert'; // Import
+
+function postTheChallenge(id,imagelink,videolink,description,onSuccess){
     let details = {
         'imagelink':imagelink,
         'videolink':videolink,
@@ -14,7 +15,7 @@ export default function challengeRegister(id,imagelink,videolink,description,onS
     }
     formBody = formBody.join("&");
 
-     // Simple POST request with a JSON body using fetch
+ // Simple POST request with a JSON body using fetch
      const requestOptions = {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
@@ -33,4 +34,29 @@ export default function challengeRegister(id,imagelink,videolink,description,onS
         if(err.status===401)
             alert("Attenzione: Username o password sbagliati")
                     })
+}
+
+export default function challengeRegister(id,imagelink,videolink,description,onSuccess){
+    var ok;
+    const options = {
+        title: 'Title',
+        message: 'Message',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: () => postTheChallenge(id,imagelink,videolink,description,onSuccess)
+          },
+          {
+            label: 'No',
+            onClick: () => {ok = false}
+          }
+        ],
+        closeOnEscape: true,
+        closeOnClickOutside: true,
+        willUnmount: () => {},
+        afterClose: () => {},
+        onClickOutside: () => {},
+        onKeypressEscape: () => {}
+      };
+    confirmAlert(options);
 }

@@ -14,7 +14,6 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import MenuIcon from '@material-ui/icons/Menu';
 import { mainListItems } from './menuItems';
-import Background from './img/bosco.jpg';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import {
@@ -29,7 +28,9 @@ import isAuth from './Auth'
 import {logoutSession} from './Auth'
 
 import defaultTheme from './siteTheme'
-import { ThemeProvider } from '@material-ui/core';
+import {dashboardTheme} from './siteTheme'
+import { ThemeProvider, Paper } from '@material-ui/core';
+import MainPage from './MainPage';
 
 function Copyright() {
   return (
@@ -52,8 +53,9 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    backgroundImage: "url(" + { Background } + ")"
+  //  backgroundImage: "url('/img/bosco.jpg')"
   },
+  
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
@@ -97,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    background: 'rgba(76, 175, 80, 0.0)',
+//    background: 'rgba(76, 175, 80, 0.0)',
   },
   drawerPaperClose: {
     overflowX: 'hidden',
@@ -120,12 +122,15 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+    display: 'flex',
+    flexDirection: 'column',
   },
   paper: {
     padding: theme.spacing(2),
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    alignItems: 'center',
   },
   fixedHeight: {
     height: 240,
@@ -148,9 +153,8 @@ export default function Dashboard() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   isAuth();
   return (
-    
-    <ThemeProvider theme={defaultTheme}>
     <div className={classes.root}>
+    <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar)}>
         <Toolbar className={classes.toolbar}>
@@ -166,12 +170,13 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             The master life!
           </Typography>
-          <IconButton onClick={()=>logoutSession()}color="inherit">
+          <IconButton onClick={()=>logoutSession()} color="inherit">
               <ExitToAppIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
       <Router>
+      <ThemeProvider theme={dashboardTheme}>
         <Drawer
           onClick={handleDrawerClose}
           variant="permanent"
@@ -180,20 +185,21 @@ export default function Dashboard() {
           }}
           open={open}
           >
-
           <List className={clsx(!open && classes.iconClosed)}>
                 {mainListItems}</List>
                 
             <Divider />
         </Drawer>
+      </ThemeProvider>
         <main id="main-container" className={classes.content} onClick={handleDrawerClose}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={8} lg={9}>
+              <Grid item xs={12} lg={11}>
                 <Switch>
                   <Route exact path="/">
-                   <h2> Benvenuto {sessionStorage.getItem('username')}</h2>
+                   <Typography variant="h2"> Benvenuto {sessionStorage.getItem('username')}</Typography>
+                   <MainPage/>
                   </Route>
                   <Route path="/all_challenges">
                     <Challenges/>
@@ -214,7 +220,7 @@ export default function Dashboard() {
         </main>
         
       </Router>
-    </div>
     </ThemeProvider>
+   </div>
   );
 }

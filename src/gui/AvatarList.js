@@ -5,7 +5,9 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
+import defaultTheme from '../siteTheme'
+import clsx from 'clsx';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,101 +20,44 @@ const useStyles = makeStyles((theme) => ({
     width: '100px',
   },
   card: {
-    maxwidth: '500px'
+    maxwidth: '500px',
+    maxHeight: '300px',
+    overflowY: 'scroll'
   },
   avatar: {
       width: '100%',
       height: '100%'
+  },
+  selectedAvatar: {
+    background: defaultTheme.palette.secondary.main,
   }
 }));
-export default function AvatarList({onClickHandle}) {
+
+function renderAvatarItem(i,s,classes,onClickHandle){
+  if(s===true)s=0;
+var sel = false;
+ if (i===s)sel=true;
+  return (
+    <Grid key={i} item xs={6}  sm={4}>
+          <Paper className={clsx(classes.paper, sel && classes.selectedAvatar) }>
+             <Avatar  onClick={() => onClickHandle(i)} className={classes.avatar} alt="Il tuo avatar" src={process.env.PUBLIC_URL + '/avatars/png/avatar-' + i + '.png'} />
+          </Paper>
+        </Grid>
+  )
+
+}
+
+export default function AvatarList({onClickHandle,selectedAvatar}) {
     const classes = useStyles();
+    const iter = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+    const renderedAvatars = iter.map(i => renderAvatarItem(i,selectedAvatar,classes,onClickHandle))
   return (
 <div className={classes.root}>
   <Card className={classes.card}>
-      <CardHeader title='Scegli il tuo avatar' />
     <CardContent>
       <Grid container spacing={3}>
-        <Grid item xs={6}  sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(0)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-0.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(1)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-1.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(2)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-2.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(3)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-3.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(4)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-4.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(5)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-5.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(6)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-6.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(7)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-7.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(8)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-8.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(9)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-9.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(10)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-10.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(11)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-11.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(12)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-12.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(13)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-13.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(14)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-14.png'} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <Paper className={classes.paper}>
-             <Avatar onClick={() => onClickHandle(15)} className={classes.avatar} alt="Natacha" src={process.env.PUBLIC_URL + '/avatars/png/avatar-15.png'} />
-          </Paper>
-        </Grid>
+        {renderedAvatars}
+        
       </Grid>
     </CardContent>
   </Card>

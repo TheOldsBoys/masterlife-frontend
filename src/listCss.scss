@@ -12,13 +12,12 @@
 
     .principalButton {
         margin: 0em;
-        height: 25vh;
-          background-color:#4caf50;
-          border:2px solid #18ab29;
+        height: 20vh;
+          //background-color:#4caf50;
+          //border:2px solid #18ab29;
           cursor:pointer;
-          color:#ffffff;
-          font-family:Arial;
           font-size:24px;
+          color: black;
          // padding:32px 31px;
           text-decoration:none;
           text-shadow:0px 1px 23px #2f6627;
@@ -28,7 +27,7 @@
           }
       }
       .principalButton:hover {
-          background-color:#4e9b51;
+         // background-color:#4e9b51;
       }
       
 }
@@ -42,3 +41,21 @@
     
     min-width: 70vw;
 }
+
+#backgroundImage {
+    content:"";
+    background: url('/img/bosco.jpg');
+    opacity: 0.4;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    position: absolute;
+    z-index: -1;   
+  }
+
+  h2 {
+      //text-align: center;
+      color: white;
+      //background: linear-gradient(90deg,rgba(85,92,89,0.7) 0%,rgba(85,92,89,0.7) 33%,rgba(85,92,89,0) 100%);
+  }

@@ -1,6 +1,8 @@
 import React from 'react';
 import ChallengeList from './gui/ChallengeList.js'
 import data from './sfide.json'
+import { ThemeProvider, Typography } from '@material-ui/core';
+import defaultTheme from './siteTheme'
 
 export default class Challenges extends React.Component{
     constructor(props) {
@@ -30,11 +32,13 @@ export default class Challenges extends React.Component{
         console.log('--------------------------')
         console.log(this.state.listOfChall)
         console.log('--------------------------')
-    return(        
+    return(     
+    <ThemeProvider theme={defaultTheme}>   
         <div id="mainView" className="listChallenges main-container" style={false ? {pointerEvents: "none", opacity: "0.4"} : {}}>
-            <h1>Le sfide ....</h1>
+        <Typography variant="h2">Le sfide ....</Typography>
             <ChallengeList data={data} />
         </div>
+    </ThemeProvider>
     )
         
     }

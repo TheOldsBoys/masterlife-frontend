@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { Typography, Paper } from '@material-ui/core';
 
 
 export default class FriendsActivity extends React.Component{
@@ -7,11 +8,9 @@ export default class FriendsActivity extends React.Component{
     return(
       
       <div>
-        <label htmlFor="contained-button-file">
-          <Button variant="contained" color="primary" component="span">
-            Carica il video
-          </Button>
-        </label>
+        <Paper>
+        <Typography variant="h6"> In costruzione... </Typography>
+        </Paper>
       </div>
     )
   }

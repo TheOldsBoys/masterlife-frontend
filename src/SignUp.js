@@ -13,14 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AvatarList from './gui/AvatarList'
-
+import CardHeader from '@material-ui/core/CardHeader';
 
 import defaultTheme from './siteTheme'
-import { ThemeProvider } from '@material-ui/core';
+import { ThemeProvider, Paper } from '@material-ui/core';
 
-function onAvatarClick(i){
-  alert(i)
-}
 
 function Copyright() {
   return (
@@ -35,11 +32,13 @@ function Copyright() {
   );
 }
 
-function sendSignup(username, pw, email){
+function sendSignup(username, pw, email,avatar){
+if(avatar===true){avatar = 0}
   let details = {
     'username': username,
     'password': pw,
-    'email': email
+    'email': email,
+    'avatar': avatar,
 };
 
 let formBody = [];
@@ -77,13 +76,17 @@ fetch(process.env.REACT_APP_API + 'register',requestOptions)
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
+    padding: defaultTheme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    maxHeight: '80vh',
+    overflowY:'scroll',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    background: defaultTheme.palette.primary.main,
+    color: defaultTheme.palette.primary.contrastText
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -96,13 +99,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-
+  const [selectedAvatar, setSelectedAvatar] = React.useState(true);
+const onAvatarClick = (i) =>{
+  setSelectedAvatar(i)
+}
   return (
     
     <ThemeProvider theme={defaultTheme}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -148,7 +154,9 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <AvatarList onClickHandle={onAvatarClick} />
+              
+      <CardHeader title='Scegli il tuo avatar' />
+              <AvatarList onClickHandle={onAvatarClick} selectedAvatar={selectedAvatar} />
             </Grid>
           <Button
             type="submit"
@@ -156,7 +164,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={()=>sendSignup( document.getElementById('username').value, document.getElementById('password').value,document.getElementById('email').value)}
+            onClick={()=>sendSignup( document.getElementById('username').value, document.getElementById('password').value,document.getElementById('email').value,selectedAvatar)}
             >
             Sign Up
           </Button>
@@ -169,7 +177,7 @@ export default function SignUp() {
             </Grid>
           </Grid>
         </form>
-      </div>
+      </Paper>
       <Box mt={5}>
         <Copyright />
       </Box>

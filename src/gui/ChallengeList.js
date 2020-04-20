@@ -3,7 +3,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -11,18 +10,19 @@ import Divider from '@material-ui/core/Divider';
 import '../listCss.scss'
 import ChallengeDetails from './challengeDetails'
 import CheckIcon from '@material-ui/icons/Check';
+import { Paper } from '@material-ui/core';
 
 const classes = makeStyles((theme) => ({
     root: {
       width: '100%',
       maxWidth: 360,
       minWidth: '36ch',
-      backgroundColor: theme.palette.background.paper,
+//      backgroundColor: theme.palette.background.paper,
     },
   }));
 
 function renderChallengeListItem(entry, handleClickOpen){
- const ChallInfo =  "   ( lv."+ entry.level+" - "+ entry.reward +"pt)"
+ const ChallInfo =  "   ( " + entry.reward +"pt) | " + entry.level;
   const completed = (compl) => {
     if(compl !== null)
     return(<CheckIcon/>)
@@ -58,9 +58,11 @@ const [open, setOpen] = React.useState(false);
   const renderedList = data.map(l => renderChallengeListItem(l,handleClickOpen))
 
   return(
+  <Paper>
     <List className={classes.root}>
       {renderedList}
       <ChallengeDetails open={open} onClose={handleClose} selectedValue={selectedValue} />
     </List>
+  </Paper>
   )
 }

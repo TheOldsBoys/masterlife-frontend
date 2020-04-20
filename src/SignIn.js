@@ -14,6 +14,7 @@ import {auth} from './Auth'
 
 
 import defaultTheme from './siteTheme'
+import { Paper } from '@material-ui/core';
 
 function Copyright() {
   return (
@@ -28,23 +29,25 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: defaultTheme.spacing(8),
+    padding: defaultTheme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    margin: defaultTheme.spacing(1),
+    background: defaultTheme.palette.primary.main,
+    color: defaultTheme.palette.primary.contrastText
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: defaultTheme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: defaultTheme.spacing(3, 0, 2),
   },
 }));
 
@@ -55,7 +58,7 @@ export default function SignIn() {
 <ThemeProvider theme={defaultTheme}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -99,14 +102,14 @@ export default function SignIn() {
             <Grid item xs>
              
             </Grid>
-            <Grid item>
-              <Link href="/signup" variant="body2">
+            <Grid item >
+              <Link href="/signup" variant="body2" color="textPrimary">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
         </form>
-      </div>
+      </Paper>
       <Box mt={8}>
         <Copyright />
       </Box>
