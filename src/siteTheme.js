@@ -22,7 +22,6 @@ export default createMuiTheme({
         default: 'rgba(0,0,0,1)',
     },
     text:{
-      secondary: 'rgba(240,240,240,0.8)'
     },
     divider:"rgba(0, 0, 0, 0.56)"
   },
