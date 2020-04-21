@@ -5,7 +5,7 @@
     "Descr": "Trova 4 cose di cui non avevi notato la presenza in casa tua: fotografale e descrivile",
     "lv": 1,
     "pt": 15,
-    "__5": "",
+    "completata": true,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -16,7 +16,7 @@
     "Descr": "Fai una passeggiata e guarda le persone che incontri, descrivi la persona pi� strana che hai trovato",
     "lv": 1,
     "pt": 25,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -27,7 +27,7 @@
     "Descr": "Fai una scenetta per descrivere una tua giornata tipo coinvolgendo le persone con cui vivi",
     "lv": 1,
     "pt": 15,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -38,7 +38,7 @@
     "Descr": "",
     "lv": 1,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -49,7 +49,7 @@
     "Descr": "",
     "lv": 1,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -60,7 +60,7 @@
     "Descr": "",
     "lv": 1,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -71,7 +71,7 @@
     "Descr": "Durante la cena alzati d'improvviso e fai due giri del tavolo e poi 20 flessioni",
     "lv": 2,
     "pt": 20,
-    "__5": "",
+    "completata": true,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -82,7 +82,7 @@
     "Descr": "Impara il balletto del video e rinterpretalo",
     "lv": 2,
     "pt": 20,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -93,7 +93,7 @@
     "Descr": "Impara un piccolo numero di giocolieri e fallo truccato da pagliaccio",
     "lv": 2,
     "pt": 25,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -104,7 +104,7 @@
     "Descr": "Indossa pi� vestiti possibili fino a diventare un pallone e improvvisa un balletto su una musica regaetton",
     "lv": 2,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -115,7 +115,7 @@
     "Descr": "",
     "lv": 2,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -126,7 +126,7 @@
     "Descr": "",
     "lv": 2,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -137,7 +137,7 @@
     "Descr": "Lavare i vetri della casa a ritmo di 5 canzoni diverse: LA VASCA (Alex Britti); BARBIE (Aqua); PIO PIO (Amanda Morales); SPLENDIDO SPLENDENTE (Donatella Rettore); FORZA UGO NON SEI SOLO",
     "lv": 3,
     "pt": 25,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -148,7 +148,7 @@
     "Descr": "Prepara un piatto particolare che piace alla tua famiglia e servila come un vero chef professionale presentando il tuo piatto",
     "lv": 3,
     "pt": 25,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -159,7 +159,7 @@
     "Descr": "",
     "lv": 3,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -170,7 +170,7 @@
     "Descr": "",
     "lv": 3,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -181,7 +181,7 @@
     "Descr": "",
     "lv": 3,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -192,7 +192,7 @@
     "Descr": "",
     "lv": 3,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -203,7 +203,7 @@
     "Descr": "Fabbrica 5 mascherine con materiali creativi e originali di recupero",
     "lv": 4,
     "pt": 20,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -214,7 +214,7 @@
     "Descr": "Leggo in un giorno solo un libro che non ho mai letto e poi faccio un video intellettualoide in cui lo racconto",
     "lv": 4,
     "pt": 15,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -225,7 +225,7 @@
     "Descr": "",
     "lv": 4,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -236,7 +236,7 @@
     "Descr": "",
     "lv": 4,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -247,7 +247,7 @@
     "Descr": "",
     "lv": 4,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -258,7 +258,7 @@
     "Descr": "",
     "lv": 4,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -269,7 +269,7 @@
     "Descr": "Faccio un dipinto/disegno con il tema: \"I MIEI SOGNI FINITA LA QUARANTENA",
     "lv": 5,
     "pt": 20,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -280,7 +280,7 @@
     "Descr": "Componi una filastrocca in rima di almeno 10 versi TEMA : \"LA QUARANTENA MI SVENA\" Libera interpretazione",
     "lv": 5,
     "pt": 20,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -291,7 +291,7 @@
     "Descr": "Scegli una scena di un film e rinterpretala",
     "lv": 5,
     "pt": 20,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -302,7 +302,7 @@
     "Descr": "Entra in scena come se scendessi dalla scalinata di Sanremo e canta la canzone preferita di un tuo familiare/amico e dedicagliela",
     "lv": 5,
     "pt": 20,
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -313,7 +313,7 @@
     "Descr": "",
     "lv": 5,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -324,7 +324,7 @@
     "Descr": "",
     "lv": 5,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -335,7 +335,7 @@
     "Descr": "",
     "lv": 6,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -346,7 +346,7 @@
     "Descr": "",
     "lv": 6,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -357,7 +357,7 @@
     "Descr": "",
     "lv": 6,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -368,7 +368,7 @@
     "Descr": "",
     "lv": 6,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -379,7 +379,7 @@
     "Descr": "",
     "lv": 6,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -390,7 +390,7 @@
     "Descr": "",
     "lv": 6,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -401,7 +401,7 @@
     "Descr": "",
     "lv": 7,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -412,7 +412,7 @@
     "Descr": "",
     "lv": 7,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -423,7 +423,7 @@
     "Descr": "",
     "lv": 7,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -434,7 +434,7 @@
     "Descr": "",
     "lv": 7,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -445,7 +445,7 @@
     "Descr": "",
     "lv": 7,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -456,7 +456,7 @@
     "Descr": "",
     "lv": 7,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -467,7 +467,7 @@
     "Descr": "",
     "lv": 8,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -478,7 +478,7 @@
     "Descr": "",
     "lv": 8,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -489,7 +489,7 @@
     "Descr": "",
     "lv": 8,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -500,7 +500,7 @@
     "Descr": "",
     "lv": 8,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -511,7 +511,7 @@
     "Descr": "",
     "lv": 8,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""
@@ -522,7 +522,7 @@
     "Descr": "",
     "lv": 8,
     "pt": "",
-    "__5": "",
+    "completata": false,
     "__6": "",
     "__7": "",
     "__8": ""

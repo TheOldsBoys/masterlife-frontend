@@ -18,6 +18,12 @@
 .env.test.local
 .env.production.local
 
+#keys
+client_secret.json
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+src/client_secret.js
+debug.log
+build (2).zip

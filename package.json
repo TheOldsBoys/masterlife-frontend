@@ -1,6 +1,6 @@
 {
   "name": "the_master_life",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.9",
@@ -9,20 +9,29 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
+    "google-auth-library": "^6.0.0",
+    "googleapis": "^48.0.0",
     "node-sass": "^4.13.1",
+    "normalize.css": "^8.0.1",
     "path": "^0.12.7",
     "react": "^16.13.1",
+    "react-confirm-alert": "^2.6.1",
     "react-dom": "^16.13.1",
     "react-on-screen": "^2.1.1",
+    "react-player": "^1.15.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "recharts": "^1.8.5"
+    "recharts": "^1.8.5",
+    "video-react": "^0.14.1",
+    "vimeo": "^2.1.1"
   },
   "scripts": {
     "local": "react-scripts start",
     "start": "node server.js",
+    "quicyou": "node quickstart.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
