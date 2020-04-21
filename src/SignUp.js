@@ -21,6 +21,7 @@ import { ThemeProvider, Paper } from '@material-ui/core';
 
 function Copyright() {
   return (
+  <div>
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
@@ -29,6 +30,12 @@ function Copyright() {
       {new Date().getFullYear()}
       {'.'}
     </Typography>
+    
+    <Typography variant="body2" color="textSecondary" align="center">
+      Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+      {'.'}
+    </Typography>
+  </div>
   );
 }
 
@@ -178,7 +185,7 @@ const onAvatarClick = (i) =>{
           </Grid>
         </form>
       </Paper>
-      <Box mt={5}>
+      <Box mt={3}>
         <Copyright />
       </Box>
     </Container>

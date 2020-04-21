@@ -2,7 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import yellow from '@material-ui/core/colors/yellow';
 import 'normalize.css'
-import { red } from '@material-ui/core/colors';
+import { red, white } from '@material-ui/core/colors';
 
 export default createMuiTheme({
   palette: {
@@ -22,7 +22,7 @@ export default createMuiTheme({
         default: 'rgba(0,0,0,1)',
     },
     text:{
-      secondary: "rgba(30,30,30,0.8)"
+      secondary: 'rgba(240,240,240,0.8)'
     },
     divider:"rgba(0, 0, 0, 0.56)"
   },
@@ -34,12 +34,18 @@ export default createMuiTheme({
     fontWeightMedium: 500,
     fontWeightBold: 800,
     body1:{
-    lineHeight:1.4,
+      lineHeight:1.4,
+    },
+    h4:{
+      fontWeightRegular:300,
+      fontSize:13
+    },
+    body2:{
+      fontSize:17
     },
     h5:{
       lineHeight:1.5
     },
-    
     h2:{
       
       fontWeight: 500,

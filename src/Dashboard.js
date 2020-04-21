@@ -35,13 +35,9 @@ import MainPage from './MainPage';
 function Copyright() {
   return (
   <div>
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © gabbo è online '}
+    <Typography variant="h4" color="textSecondary" align="center">
+      {'Copyright © masterlife '}
       {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-    <Typography variant="body2" color="textSecondary" align="center">
-      Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
       {'.'}
     </Typography>
   </div>

@@ -2,10 +2,11 @@
 const express = require('express');
 const favicon = require('express-favicon');
 const path = require('path');
+var port;
 if(process.env.NODE_ENV==='production'){
-  const port =  process.env.PORT_PRODUCTION || 8080;}
+ port =  process.env.PORT_PRODUCTION || 8080;}
 else {
-  const port =  process.env.PORT || 8080;
+ port =  process.env.PORT || 8080;
 }
 const app = express();
 app.use(favicon(__dirname + '/build/icon.png'));

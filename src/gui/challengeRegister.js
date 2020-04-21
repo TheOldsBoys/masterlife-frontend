@@ -48,7 +48,7 @@ export default function challengeRegister(id,imagelink,videolink,description,onS
           },
           {
             label: 'No',
-            onClick: () => {ok = false}
+            onClick: () => window.location.reload
           }
         ],
         closeOnEscape: true,
@@ -58,5 +58,6 @@ export default function challengeRegister(id,imagelink,videolink,description,onS
         onClickOutside: () => {},
         onKeypressEscape: () => {}
       };
-    confirmAlert(options);
+      alert('confirm')
+       confirmAlert(options);
 }
