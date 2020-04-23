@@ -63,7 +63,7 @@ export default function UserCard({data}){
   return (
     <Card className={cx(styles.card, shadowStyles.root)}>
       <CardContent>
-        <Avatar className={styles.avatar} src={ process.env.PUBLIC_URL + '/avatars/png/avatar-' + data.level_id +'.png'} />
+        <Avatar className={styles.avatar} src={ process.env.PUBLIC_URL + '/avatars/png/avatar-' + data.avatar +'.png'} />
         <h3 className={styles.heading}>{data.username}</h3>
         <span className={styles.subheader}>{data.email}</span>
       </CardContent>

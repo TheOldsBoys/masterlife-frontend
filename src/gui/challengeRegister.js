@@ -38,7 +38,7 @@ function postTheChallenge(id,imagelink,videolink,description,onSuccess){
 
 export default function challengeRegister(id,imagelink,videolink,description,onSuccess){
     var ok;
-    const options = {
+   /* const options = {
         title: 'Title',
         message: 'Message',
         buttons: [
@@ -58,6 +58,6 @@ export default function challengeRegister(id,imagelink,videolink,description,onS
         onClickOutside: () => {},
         onKeypressEscape: () => {}
       };
-      alert('confirm')
-       confirmAlert(options);
+       confirmAlert(options);*/
+       postTheChallenge(id,imagelink,videolink,description,onSuccess);
 }

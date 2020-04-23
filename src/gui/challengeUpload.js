@@ -46,9 +46,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 function disable(completed_at){if(completed_at === null) return false; else return true}
-function labelIfCompleted(description,label){if(description!==null)return description; else return label}
-function videoIfCompleted(videolink,completed_at){
-  if(completed_at===null)
+function labelIfCompleted(description,label,isComplete){if(isComplete)return description; else return label}
+function videoIfCompleted(videolink,completed_at,isComplete){
+  if(!isComplete)
   return(
   <TextField 
                   id="video" placeholder='Incolla qui il link al tuo video'
@@ -70,8 +70,10 @@ export default function ChallengeUploadPanel({data}) {
       return("Carica la tua SFIDA!")
   }
 
+  const isComplete = disable(data.completed_at)
+
   console.log('-------------------')
-  console.log(disable(data.completed_at))
+  console.log(disable(isComplete))
   return (
     <div className={classes.root}>
       <ExpansionPanel disabled={false}>
@@ -80,7 +82,7 @@ export default function ChallengeUploadPanel({data}) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>{completed(disable(data.completed_at))}</Typography>
+          <Typography className={classes.heading}>{completed(isComplete)}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <div className={classes.allWidht}>
@@ -91,7 +93,7 @@ export default function ChallengeUploadPanel({data}) {
                   disabled={disable(data.completed_at)}
                   className={classes.textField}
                   id="description"
-                  label={labelIfCompleted(data.completed_at,"Descrizione dello svolgimento")}
+                  defaultValue={labelIfCompleted(data.user_challenge_description,"Descrizione dello svolgimento",isComplete)}
                   placeholder="Placeholder"
                   multiline
                   variant="outlined"
@@ -99,11 +101,13 @@ export default function ChallengeUploadPanel({data}) {
                 />
               </Grid>
               <Grid key={6} item>                
-                {videoIfCompleted("https://www.youtube.com/watch?v=5cHDmZP3UvI",data.completed_at)}
+                {videoIfCompleted(data.video_link,data.completed_at,isComplete)}
               </Grid>
               <Grid key={4} item>
-                <Button disabled={disable(data.completed_at)} onClick={() => {challengeRegister(data.id,"immagine",document.getElementById('video').value,document.getElementById('description').value)}} autoFocus color="primary">
-                  Save changes
+                <Button disabled={isComplete}
+                  onClick={() => {challengeRegister(data.id,"immagine",document.getElementById('video').value,document.getElementById('description').value)}}
+                  autoFocus color="primary">
+                    Save changes
                 </Button>
               </Grid>
             </Grid>

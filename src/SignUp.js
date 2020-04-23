@@ -72,6 +72,7 @@ fetch(process.env.REACT_APP_API + 'register',requestOptions)
 .then(data => {
     if (data.auth === true ){console.log(data)}
     window.location.href='/login';
+    
                 })
 .catch( err => {
         console.log(err.status)

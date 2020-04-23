@@ -15,6 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import MenuIcon from '@material-ui/icons/Menu';
 import { mainListItems } from './menuItems';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useEffect } from 'react';
 
 import {
   BrowserRouter as Router,
@@ -105,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
     }),
     width: theme.spacing(0),
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
+      width: theme.spacing(10),
     },
   },
 
@@ -134,6 +135,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard() {
+  useEffect(() => {
+    isAuth();
+})
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -147,7 +152,6 @@ export default function Dashboard() {
     if (!open) handleDrawerOpen();
   }
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  isAuth();
   return (
     <div className={classes.root}>
     <ThemeProvider theme={defaultTheme}>

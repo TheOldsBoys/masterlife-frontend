@@ -22,7 +22,7 @@ const classes = makeStyles((theme) => ({
   }));
 
 function renderChallengeListItem(entry, handleClickOpen){
- const ChallInfo =  "   ( " + entry.reward +"pt) | " + entry.level;
+ const ChallInfo =  "   ( " + entry.reward +"pt) : " + entry.level;
   const completed = (compl) => {
     if(compl !== null)
     return(<CheckIcon/>)

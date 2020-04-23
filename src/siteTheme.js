@@ -4,7 +4,9 @@ import yellow from '@material-ui/core/colors/yellow';
 import 'normalize.css'
 import { red, white } from '@material-ui/core/colors';
 
-export default createMuiTheme({
+const defaultTheme = createMuiTheme();
+
+const theme = createMuiTheme({
   palette: {
     primary: 
       {
@@ -34,21 +36,35 @@ export default createMuiTheme({
     fontWeightBold: 800,
     body1:{
       lineHeight:1.4,
+      [defaultTheme.breakpoints.down('sm')]: {
+        lineHeight: 1.2,
+        fontSize: 19
+      }
     },
     h4:{
       fontWeightRegular:300,
       fontSize:13
     },
     body2:{
-      fontSize:17
+      fontSize:17,
+      [defaultTheme.breakpoints.down('sm')]: {
+        fontSize: 16
+      }
     },
     h5:{
-      lineHeight:1.5
+      lineHeight:1.5,
+      [defaultTheme.breakpoints.down('sm')]: {
+        lineHeight: 1.2,
+        fontSize: 28
+      }
     },
     h2:{
       
       fontWeight: 500,
       fontWeightBold: 300,
+      [defaultTheme.breakpoints.down('sm')]: {
+        fontSize: 50
+      }
 
     }
   }
@@ -75,3 +91,5 @@ export default createMuiTheme({
 });
 
 console.log('eseguito siteTheme.js')
+
+export default theme;
