@@ -69,13 +69,10 @@ fetch(process.env.REACT_APP_API + 'register',requestOptions)
     alert('ok!')
     window.location.href='/login'; //we only get here if there is no error
         })
-.then(data => {
-    if (data.auth === true ){console.log(data)}
-    window.location.href='/login';
-    
-                })
 .catch( err => {
         console.log(err.status)
+
+alert(formBody)
     if(err.status===401)
         alert("Attenzione: Username o password sbagliati")
                 })
@@ -107,9 +104,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-  const [selectedAvatar, setSelectedAvatar] = React.useState(true);
+  const [selectedAvatar, setSelectedAvatar] = React.useState(0);
 const onAvatarClick = (i) =>{
   setSelectedAvatar(i)
+  console.log(selectedAvatar + 'aaaaaa= ' + i)
 }
   return (
     
@@ -167,7 +165,6 @@ const onAvatarClick = (i) =>{
               <AvatarList onClickHandle={onAvatarClick} selectedAvatar={selectedAvatar} />
             </Grid>
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"

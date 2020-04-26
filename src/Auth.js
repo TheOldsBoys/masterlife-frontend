@@ -4,27 +4,28 @@ export default function isAuth(){
         credentials: 'include',
     };
     fetch(process.env.REACT_APP_API + process.env.REACT_APP_API_v + 'user',requestOptions)
-    .then(data => data.json())
-    .then(userArr => {
-      if (userArr.error !== undefined)
-            window.location.href='/login';
+    .then(data => {
+        if(!data.ok)window.location.href='/login'
+        data.json()});   
 
-      console.log('userone------------' + userArr.username)
-        });   
-
-        if(!sessionStorage.getItem('auth'))window.location.href='/login';
+       // if(!sessionStorage.getItem('auth'))window.location.href='/login';
 }
 
 function setUpAuthSession(res){
     sessionStorage.setItem('id', res.user.id);
     sessionStorage.setItem('username', res.user.username);
-    sessionStorage.setItem('auth', true);
 }
 
 export function logoutSession(){
     sessionStorage.clear();
     localStorage.clear();
-    window.location.href='/login'
+    const requestOptions = {
+        method: "GET",
+        credentials: 'include',
+    };
+    fetch(process.env.REACT_APP_API + 'logout',requestOptions)
+    .then(window.location.href='/login')
+    
 }
 
     export function auth(username, pw){
