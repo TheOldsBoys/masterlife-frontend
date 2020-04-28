@@ -28,7 +28,7 @@ import FriendsActivity from './FriendsActivity';
 import isAuth from './Auth'
 import {logoutSession} from './Auth'
 
-import defaultTheme from './siteTheme'
+import theme from './siteTheme'
 import {dashboardTheme} from './siteTheme'
 import { ThemeProvider, Paper } from '@material-ui/core';
 import MainPage from './MainPage';
@@ -154,7 +154,7 @@ export default function Dashboard() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
     <div className={classes.root}>
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar)}>
         <Toolbar className={classes.toolbar}>

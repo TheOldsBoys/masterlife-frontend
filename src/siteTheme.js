@@ -1,8 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
 import yellow from '@material-ui/core/colors/yellow';
-import 'normalize.css'
-import { red, white } from '@material-ui/core/colors';
+import grey from '@material-ui/core/colors/grey'
+//import 'normalize.css'
 
 const defaultTheme = createMuiTheme();
 
@@ -16,14 +15,15 @@ const theme = createMuiTheme({
         },
     info: yellow,
     secondary:{
-        main: red[500]
+      main: '#054ab1'
     },
     background:{
-        paper:'rgba(176, 194, 161,0.83)',
+        paper:'rgba(245, 251, 240,0.91)',
      //   default: '#CDB992'
         default: 'rgba(0,0,0,1)',
     },
     text:{
+      secondary:'rgba(0, 0, 0, 0.84)'
     },
     divider:"rgba(0, 0, 0, 0.56)"
   },
@@ -70,10 +70,19 @@ const theme = createMuiTheme({
   }
 });
 
+
+
  export const dashboardTheme = createMuiTheme({
     palette: {
       background: {
-            paper:'rgba(85, 92, 89,0.7)',
+    //    paper:'rgba(245, 251, 240,0.91)',
+        paper:'rgba(36,78,1,0.72)',
+      },
+      primary:{
+        main:'rgba(255,230,255,1)'
+      },
+      secondary:{
+        main: '#054ab1'
       }
     },
     typography: {

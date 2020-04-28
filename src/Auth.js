@@ -62,7 +62,7 @@ export function logoutSession(){
         window.location.href='/';
                     })
     .catch( err => {
-            console.log(err.status)
+            console.log(err)
         if(err.status===401)
             alert("Attenzione: Username o password sbagliati")
                     })

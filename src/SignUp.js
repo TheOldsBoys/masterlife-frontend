@@ -17,6 +17,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 
 import defaultTheme from './siteTheme'
 import { ThemeProvider, Paper } from '@material-ui/core';
+import {isValidEmail, isValidUsername, isValidPW} from './functionValidate'
 
 
 function Copyright() {
@@ -39,44 +40,7 @@ function Copyright() {
   );
 }
 
-function sendSignup(username, pw, email,avatar){
-if(avatar===true){avatar = 0}
-  let details = {
-    'username': username,
-    'password': pw,
-    'email': email,
-    'avatar': avatar,
-};
 
-let formBody = [];
-for (let property in details) {
-    let encodedKey = encodeURIComponent(property);
-    let encodedValue = encodeURIComponent(details[property]);
-    formBody.push(encodedKey + "=" + encodedValue);
-}
-formBody = formBody.join("&");
-
- // Simple POST request with a JSON body using fetch
- const requestOptions = {
-    method: "POST",
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-    body: formBody,
-    credentials: 'include'
-};
-fetch(process.env.REACT_APP_API + 'register',requestOptions)
-.then(response =>{
-    if (!response.ok) { throw response }
-    alert('ok!')
-    window.location.href='/login'; //we only get here if there is no error
-        })
-.catch( err => {
-        console.log(err.status)
-
-alert(formBody)
-    if(err.status===401)
-        alert("Attenzione: Username o password sbagliati")
-                })
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -105,10 +69,60 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
   const [selectedAvatar, setSelectedAvatar] = React.useState(0);
+  const [valid, setValid] = React.useState(false);
+  const [validEmail, setValidEmail] = React.useState(true);
+  const [validUsername, setValidUsername] = React.useState(false);
+  const [validPW, setValidPW] = React.useState(false);
+
 const onAvatarClick = (i) =>{
   setSelectedAvatar(i)
   console.log(selectedAvatar + 'aaaaaa= ' + i)
 }
+
+function sendSignup(username, pw, email,avatar){
+  if(avatar===true){avatar = 0}
+    let details = {
+      'username': username,
+      'password': pw,
+      'email': email,
+      'avatar': avatar,
+  };
+
+  if(validEmail){
+        let formBody = [];
+        for (let property in details) {
+            let encodedKey = encodeURIComponent(property);
+            let encodedValue = encodeURIComponent(details[property]);
+            formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+        
+        // Simple POST request with a JSON body using fetch
+        const requestOptions = {
+            method: "POST",
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+            body: formBody,
+            credentials: 'include'
+        };
+        fetch(process.env.REACT_APP_API + 'register',requestOptions)
+        .then(response =>{
+            if (!response.ok) { throw response }
+            alert('ok!')
+            window.location.href='/login'; //we only get here if there is no error
+                })
+        .catch( err => {
+                console.log(err.status)
+        
+        alert(formBody)
+            if(err.status===401)
+                alert("Attenzione: Username o password sbagliati")
+                        })
+        }
+      else{
+        alert("Controlla la validità della mail!")
+      }
+    }
+
   return (
     
     <ThemeProvider theme={defaultTheme}>
@@ -121,7 +135,7 @@ const onAvatarClick = (i) =>{
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form}>
           <Grid container spacing={2}>
             
           <Grid item xs={12}>
@@ -130,10 +144,12 @@ const onAvatarClick = (i) =>{
                 variant="outlined"
                 required
                 fullWidth
+                error={!validEmail}
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => isValidEmail(e.target.value,setValidEmail)}
               />
             </Grid>
             <Grid item xs={12}>

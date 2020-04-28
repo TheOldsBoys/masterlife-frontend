@@ -23,22 +23,22 @@ export const mainListItems = (
     <NavLink to="/all_challenges" activeClassName="main-nav-active" className="main-nav">
     <ListItem button className="principalButton" >
       <ListItemIcon >
-        <FirstIcon />
+        <FirstIcon htmlColor='#e61818' />
         </ListItemIcon>
         <Typography className={classes.typography} variant="h5"> Sfide!</Typography>
      </ListItem>
     </NavLink>
     <NavLink activeClassName="main-nav-active" className="main-nav" to="/user">
     <ListItem button className="principalButton">
-      <ListItemIcon>
-      <AccountCircleIcon />
+      <ListItemIcon >
+      <AccountCircleIcon  htmlColor='#ffeb00' />
         </ListItemIcon>
         <Typography variant="h5">Profilo</Typography>
     </ListItem></NavLink>
     <NavLink activeClassName="main-nav-active" className="main-nav" to="/friends_activity">
     <ListItem button className="principalButton">
       <ListItemIcon>
-        <SettingsIcon />
+        <SettingsIcon  htmlColor='#d6d4be' />
       </ListItemIcon>
       <Typography variant="h5">...</Typography>
     </ListItem></NavLink>
@@ -46,7 +46,7 @@ export const mainListItems = (
     <NavLink activeClassName="main-nav-active" className="main-nav" to="/">
     <ListItem button className="principalButton">
       <ListItemIcon>
-        <HomeIcon />
+        <HomeIcon  htmlColor='#06c200'/>
       </ListItemIcon>
       <Typography variant="h5"> start</Typography>
     </ListItem></NavLink>
