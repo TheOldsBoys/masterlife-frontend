@@ -5,6 +5,7 @@ import FirstIcon from '@material-ui/icons/SportsHandball';
 import {NavLink} from 'react-router-dom'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SettingsIcon from '@material-ui/icons/Settings';
+import PeopleIcon from '@material-ui/icons/People';
 import './listCss.scss'
 import { ThemeProvider, Divider, Typography } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
@@ -38,9 +39,9 @@ export const mainListItems = (
     <NavLink activeClassName="main-nav-active" className="main-nav" to="/friends_activity">
     <ListItem button className="principalButton">
       <ListItemIcon>
-        <SettingsIcon  htmlColor='#d6d4be' />
+        <PeopleIcon  htmlColor='#062bcf' />
       </ListItemIcon>
-      <Typography variant="h5">...</Typography>
+      <Typography variant="h5">Social</Typography>
     </ListItem></NavLink>
     <Divider />
     <NavLink activeClassName="main-nav-active" className="main-nav" to="/">
@@ -48,7 +49,7 @@ export const mainListItems = (
       <ListItemIcon>
         <HomeIcon  htmlColor='#06c200'/>
       </ListItemIcon>
-      <Typography variant="h5"> start</Typography>
+      <Typography variant="h5">Home</Typography>
     </ListItem></NavLink>
   </div>
 );

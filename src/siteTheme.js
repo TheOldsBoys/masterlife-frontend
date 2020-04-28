@@ -95,6 +95,7 @@ const theme = createMuiTheme({
       h5:{
       fontSize:25,
       fontWeight: 300,
+      color:'#ffffff'
       }
     }
 });

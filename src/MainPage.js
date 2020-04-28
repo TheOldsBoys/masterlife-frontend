@@ -84,7 +84,10 @@ cercare gesti che, anche se piccoli, possano far sorridere qualcun altro.
        Le sfide sono come piccole "idee" o passatempi per fare qualcosa di diverso dal solito.
        Il bello di svolgere ogni sfida sarà il momento della realizzazione, non il completarla.<br/><br/>
        Per ogni sfida c'è la possibilità di caricare una descrizione e il link a un video.
-       Il video ora come ora deve essere caricato personalmente su youtube.<br/><br/>
+       Il video ora come ora deve essere caricato personalmente su youtube<br/>
+       (il link è disponibile nella pagina di caricamento della sfida).<br/><br/>
+      Presto sarà disponibile la pagina 'Social', in cui poter visualizzare le sfide fatte dagli altri utenti!  :-)
+       <br/><br/>
        Consigli:
       </Typography>
       <div>
@@ -92,8 +95,12 @@ cercare gesti che, anche se piccoli, possano far sorridere qualcun altro.
         <ListItem>Il video è un bene caricarlo ma non è fondamentale, tantomeno serve video da professionisti.</ListItem>
         <ListItem>Comincia dalle prove più semplici o che ti si addicono di più, l'importante è SVOLGERLE BENE!</ListItem>
       </div>
-      <Divider/>
       <Typography variant="h3">HAPPY TIME!</Typography>
+      <Divider/>
+      <ListItem variant="body2">Per suggerimenti (anche proposte di nuove 'sfide') o necessità siamo disponibili: <br/>
+      email: gabbopeace@gmail.com / 3517990492
+      </ListItem>
+      <Divider/>
     </Paper>
   )
 }
