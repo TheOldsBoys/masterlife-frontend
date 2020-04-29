@@ -55,7 +55,7 @@ export default function ChallengeUploadPanel({data}) {
 
   const [validLink, setValidLink] = React.useState(true);
   const [updatingChall, setUpdatingChall] = React.useState(false);
-
+ 
   const completed = (compl) => {
     if(compl)
     return( 
@@ -72,7 +72,7 @@ export default function ChallengeUploadPanel({data}) {
   function disable(completed_at){if(completed_at !== null && !updatingChall) return true; else return false}
   function labelIfCompleted(description,label){if(isComplete)return description; else return label}
   function videoIfCompleted(videolink){
-    var defaultVideoLink="Link al tuo video:";
+    var defaultVideoLink="Link al tuo video (+ 5 punti):";
     if(updatingChall)defaultVideoLink=videolink
     if(!isComplete)
     return(
@@ -133,7 +133,7 @@ export default function ChallengeUploadPanel({data}) {
               <IconButton  disabled={!isComplete && !updatingChall}
           onClick={()=>setUpdatingChall(!updatingChall)}><SettingsIcon/></IconButton>
                 <Button disabled={isComplete}
-                  onClick={() => {challengeRegister(updatingChall, data.id,"immagine",document.getElementById('video').value,document.getElementById('description').value)}}
+                  onClick={() => {challengeRegister(updatingChall, data.id,"immagine",document.getElementById('video').value,document.getElementById('description').value,data.reward)}}
                   autoFocus color="primary">
                     Save changes
                 </Button>
