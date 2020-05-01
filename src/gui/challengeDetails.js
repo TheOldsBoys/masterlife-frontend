@@ -71,7 +71,6 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
       onClose();
   };
 
-
 if(open){
   return (
     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>

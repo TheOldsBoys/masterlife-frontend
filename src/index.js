@@ -5,7 +5,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import isAuth from './Auth'
 
-import 'normalize.css'
+//import 'normalize.css'
 
 import {
   BrowserRouter,

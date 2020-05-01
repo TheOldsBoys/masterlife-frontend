@@ -11,6 +11,7 @@ import '../listCss.scss'
 import ChallengeDetails from './challengeDetails'
 import CheckIcon from '@material-ui/icons/Check';
 import { Paper } from '@material-ui/core';
+import ChallengeDetailsView from './challengeDetailsView';
 
 const classes = makeStyles((theme) => ({
     root: {
@@ -44,24 +45,43 @@ function renderChallengeListItem(entry, handleClickOpen){
 
 export default function ChallengeList({data}){
 
-const [open, setOpen] = React.useState(false);
+  const [openView, setOpenView] = React.useState(false);
+  const [openUpdate, setOpenUpdate] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState([]);
+  const [updatingChall, setUpdatingChall] = React.useState(false);
 
   const handleClickOpen = (l) => {
-    setOpen(true);
+    if(l.completed_at!==null)
+    setOpenView(true)
+    else
+    setOpenUpdate(true)
     setSelectedValue(l);
   };
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseView = () => {
+    setOpenView(false);
+  };
+  const handleCloseUpdate = () => {
+    setOpenUpdate(false);
   };
 
   const renderedList = data.map(l => renderChallengeListItem(l,handleClickOpen))
+
+  function onUpdatingClick(){
+    setUpdatingChall(true)
+    setOpenUpdate(true)
+    setOpenView(false);
+    console.log('clickedUpdatingButton')
+  }
 
   return(
   <Paper>
     <List className={classes.root}>
       {renderedList}
-      <ChallengeDetails open={open} onClose={handleClose} selectedValue={selectedValue} />
+      <ChallengeDetails open={openUpdate} onClose={handleCloseUpdate} selectedValue={selectedValue} />
+      <ChallengeDetailsView open={openView} 
+      onClose={handleCloseView} 
+      selectedValue={selectedValue} 
+      onUpdatingClick={onUpdatingClick} />
     </List>
   </Paper>
   )

@@ -22,10 +22,10 @@ export function isValidPW(val){}
 export function isValidLink(val,setLinkValidator){
     var errors = validate({website: val}, {website: {url: true}});
 
-    if(errors){
+    if(errors && val!==""){
         console.log(errors)
-        setLinkValidator(false)
+        return false
     }
-        else setLinkValidator(true);
+        else return true;
     
 }

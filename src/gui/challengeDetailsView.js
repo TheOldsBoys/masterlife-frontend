@@ -15,6 +15,8 @@ import { useTheme } from '@material-ui/core/styles';
 import ChallengeSocialView from './ChallengeSocialView';
 import YoutubePlayer from './youtubePlayer'
 
+import SettingsIcon from '@material-ui/icons/Settings';
+
 const styles = (theme) => ({
     root: {
       margin: 0,
@@ -63,7 +65,7 @@ const styles = (theme) => ({
     },
   }))(MuiDialogActions);
 
-export default function SimpleDialog({open,onClose,selectedValue}) {
+export default function ChallengeDetailsView({open,onClose,selectedValue,onUpdatingClick}) {
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -72,7 +74,7 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
   };
 
 
-if(open){
+if(open && selectedValue.completed_at!==null){
   return (
     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
@@ -88,12 +90,14 @@ if(open){
         <Button autoFocus onClick={handleClose} color="primary">
           Chiudi
         </Button>
+        <IconButton
+          onClick={()=> onUpdatingClick()}><SettingsIcon/></IconButton>
       </DialogActions>
     </Dialog>
   )} else return null
 }
 
-SimpleDialog.propTypes = {
+ChallengeDetailsView.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
 };

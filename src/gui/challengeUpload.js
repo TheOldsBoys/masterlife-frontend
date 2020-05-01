@@ -8,7 +8,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import challengeRegister from './challengeRegister'
-import SettingsIcon from '@material-ui/icons/Settings';
 
 import TextField from '@material-ui/core/TextField';
 import ReactPlayer from 'react-player';
@@ -54,33 +53,44 @@ export default function ChallengeUploadPanel({data}) {
   const classes = useStyles();
 
   const [validLink, setValidLink] = React.useState(true);
-  const [updatingChall, setUpdatingChall] = React.useState(false);
+  const [description, setDescription] = React.useState("");
+  const [imagelink, setImagelink] = React.useState("");
+  const [videolink, setVideolink] = React.useState("");
+  const [score, setScore] = React.useState(0);
  
+  const isComplete = disable(data.completed_at)
+
+  function disable(completed_at){if(completed_at !== null) return true; else return false}
+  
+  function onVideoTextfieldChange(value){
+    const isValid = isValidLink(value)
+    setValidLink(isValid);
+    if(isValid) setVideolink(value)
+    else setVideolink(false)
+  }
+
   const completed = (compl) => {
     if(compl)
     return( 
       <Typography className={classes.heading}>
-      "sfida già completata!"
+      "Aggiorna la tua sfida!"
           </Typography>
            )
       else
       return(<Typography className={classes.heading}>Carica la tua SFIDA!</Typography>)
   }
 
-  const isComplete = disable(data.completed_at)
-
-  function disable(completed_at){if(completed_at !== null && !updatingChall) return true; else return false}
   function labelIfCompleted(description,label){if(isComplete)return description; else return label}
   function videoIfCompleted(videolink){
     var defaultVideoLink="Link al tuo video (+ 5 punti):";
-    if(updatingChall)defaultVideoLink=videolink
-    if(!isComplete)
+    if(videolink!=="")defaultVideoLink=videolink
+
     return(
     <TextField
                     id="video"
                     label={defaultVideoLink}
                     error={!validLink}
-                    onChange={(e) => isValidLink(e.target.value,setValidLink)}
+                    onChange={(e) => onVideoTextfieldChange(e.target.value)}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -88,20 +98,18 @@ export default function ChallengeUploadPanel({data}) {
                         </InputAdornment>
                       ),
                     }}/>
-    ); else return (
-      <ReactPlayer
-          url={videolink}
-          width='100%'
-        />
     )
     
   }
 
-  console.log('-------------------')
-  console.log(disable(isComplete))
+  function onSubmitClick(){
+if(!validLink)alert("Il link al video non sembra corretto!")
+else challengeRegister(isComplete, data.id,"immagine",videolink,description,data.reward)  
+  }
+
   return (
     <div className={classes.root}>
-      <ExpansionPanel disabled={false} defaultExpanded={updatingChall} >
+      <ExpansionPanel >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -116,7 +124,6 @@ export default function ChallengeUploadPanel({data}) {
               <Grid key={1} item>  Descrizione : </Grid>
               <Grid key={2} item xs={12} sm={12}>              
                 <TextField
-                  disabled={disable(data.completed_at)}
                   className={classes.textField}
                   id="description"
                   defaultValue={labelIfCompleted(data.user_challenge_description,"",isComplete)}
@@ -124,16 +131,15 @@ export default function ChallengeUploadPanel({data}) {
                   multiline
                   variant="outlined"
                   width='100%'
+                  onChange= {(e) => setDescription(e.target.value)}
                 />
               </Grid>
               <Grid key={6} item>                
                 {videoIfCompleted(data.video_link,data.completed_at,isComplete)}
               </Grid>
               <Grid key={4} item>
-              <IconButton  disabled={!isComplete && !updatingChall}
-          onClick={()=>setUpdatingChall(!updatingChall)}><SettingsIcon/></IconButton>
-                <Button disabled={isComplete}
-                  onClick={() => {challengeRegister(updatingChall, data.id,"immagine",document.getElementById('video').value,document.getElementById('description').value,data.reward)}}
+                <Button
+                  onClick={onSubmitClick}
                   autoFocus color="primary">
                     Save changes
                 </Button>
