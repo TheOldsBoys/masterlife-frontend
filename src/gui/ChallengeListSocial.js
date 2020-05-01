@@ -8,10 +8,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
 import '../listCss.scss'
-import ChallengeDetails from './challengeDetails'
+import ChallengeDetailsView from './challengeDetailsView'
 import CheckIcon from '@material-ui/icons/Check';
 import { Paper } from '@material-ui/core';
-import ChallengeDetailsView from './challengeDetailsView';
 
 const classes = makeStyles((theme) => ({
     root: {
@@ -23,7 +22,7 @@ const classes = makeStyles((theme) => ({
   }));
 
 function renderChallengeListItem(entry, handleClickOpen){
- const ChallInfo =  "   ( " + entry.reward +"pt) : " + entry.level;
+ const ChallInfo =  "   (" + entry.level + ") by Gabbopeace";
   const completed = (compl) => {
     if(compl !== null)
     return(<CheckIcon/>)
@@ -36,8 +35,6 @@ function renderChallengeListItem(entry, handleClickOpen){
         <ImageIcon color="primary"/>
       </ListItemAvatar>
       <ListItemText primary={Title} secondary={entry.description.substring(0,100)+ '...'} />
-      <Divider orientation="vertical" flexItem />   
-      <ListItemSecondaryAction>{completed(entry.completed_at)}</ListItemSecondaryAction>
     </ListItem>
     )
 }
@@ -45,43 +42,24 @@ function renderChallengeListItem(entry, handleClickOpen){
 
 export default function ChallengeList({data}){
 
-  const [openView, setOpenView] = React.useState(false);
-  const [openUpdate, setOpenUpdate] = React.useState(false);
+const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState([]);
-  const [updatingChall, setUpdatingChall] = React.useState(false);
 
   const handleClickOpen = (l) => {
-    if(l.completed_at!==null)
-    setOpenView(true)
-    else
-    setOpenUpdate(true)
+    setOpen(true);
     setSelectedValue(l);
   };
-  const handleCloseView = () => {
-    setOpenView(false);
-  };
-  const handleCloseUpdate = () => {
-    setOpenUpdate(false);
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const renderedList = data.map(l => renderChallengeListItem(l,handleClickOpen))
-
-  function onUpdatingClick(){
-    setUpdatingChall(true)
-    setOpenUpdate(true)
-    setOpenView(false);
-    console.log('clickedUpdatingButton')
-  }
 
   return(
   <Paper>
     <List className={classes.root}>
       {renderedList}
-      <ChallengeDetails open={openUpdate} onClose={handleCloseUpdate} selectedValue={selectedValue} />
-      <ChallengeDetailsView open={openView} 
-      onClose={handleCloseView} 
-      selectedValue={selectedValue} 
-      onUpdatingClick={onUpdatingClick} />
+      <ChallengeDetailsView open={open} onClose={handleClose} selectedValue={selectedValue} />
     </List>
   </Paper>
   )

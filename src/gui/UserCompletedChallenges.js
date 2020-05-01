@@ -61,11 +61,11 @@ export default function UserCompletedChallenges({challenges}){
   console.log(challenges);
   
   return (
-    <Paper className={cx(styles.card, shadowStyles.root)}>
-      <Typography>Qua puoi visualizzare le sfide che hai già completato!</Typography>
+    <box>
+      <Typography variant='h2'>Le mie sfide</Typography>
       <CardContent>
           <ChallengeList data={challenges}/>
       </CardContent>
-    </Paper>
+    </box>
   );
 };

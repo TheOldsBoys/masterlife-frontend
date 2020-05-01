@@ -1,11 +1,12 @@
 {
   "name": "the_master_life",
   "version": "0.1.2",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@material-ui/core": "^4.9.9",
     "@material-ui/icons": "^4.9.1",
     "@mui-treasury/styles": "^1.1.0",
+    "@react-native-community/google-signin": "^4.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -17,14 +18,19 @@
     "node-sass": "^4.13.1",
     "normalize.css": "^8.0.1",
     "path": "^0.12.7",
+    "querystring": "^0.2.0",
     "react": "^16.13.1",
     "react-confirm-alert": "^2.6.1",
+    "react-cookie": "^4.0.3",
     "react-dom": "^16.13.1",
+    "react-images-upload": "^1.2.8",
     "react-on-screen": "^2.1.1",
     "react-player": "^1.15.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "recharts": "^1.8.5",
+    "universal-cookie": "^4.0.3",
+    "validate.js": "^0.13.1",
     "video-react": "^0.14.1",
     "vimeo": "^2.1.1"
   },
@@ -50,5 +56,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4"
+  },
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
+  ]
 }

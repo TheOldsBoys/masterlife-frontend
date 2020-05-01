@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css?family=Signika');
 
 a {
-    color:white;
+    color:rgb(51, 65, 255);
 }
 
 .main-nav {
@@ -29,10 +29,11 @@ a {
               height: 3em;
               width: 3em;
           }
+          padding-left: 0;
       }
-      .principalButton:hover {
+     // .principalButton:hover {
          // background-color:#4e9b51;
-      }
+     // }
       
 }
 

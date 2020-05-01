@@ -1,20 +1,31 @@
-
 export default function isAuth(){
-    if(sessionStorage.getItem('auth')==='true' || sessionStorage.getItem('auth')==='true')
-    return true;
-else
-    window.location.href='/login';
+    const requestOptions = {
+        method: "GET",
+        credentials: 'include',
+    };
+    fetch(process.env.REACT_APP_API + process.env.REACT_APP_API_v + 'user',requestOptions)
+    .then(data => {
+        if(!data.ok)window.location.href='/login'
+        data.json()});   
+
+       // if(!sessionStorage.getItem('auth'))window.location.href='/login';
 }
 
 function setUpAuthSession(res){
-    sessionStorage.setItem('auth', res.auth);
     sessionStorage.setItem('id', res.user.id);
     sessionStorage.setItem('username', res.user.username);
 }
 
 export function logoutSession(){
     sessionStorage.clear();
-    window.location.href='/login'
+    localStorage.clear();
+    const requestOptions = {
+        method: "GET",
+        credentials: 'include',
+    };
+    fetch(process.env.REACT_APP_API + 'logout',requestOptions)
+    .then(window.location.href='/login')
+    
 }
 
     export function auth(username, pw){
@@ -51,9 +62,10 @@ export function logoutSession(){
         window.location.href='/';
                     })
     .catch( err => {
-            console.log(err.status)
+            console.log(err)
         if(err.status===401)
             alert("Attenzione: Username o password sbagliati")
                     })
     
     }
+

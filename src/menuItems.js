@@ -5,6 +5,7 @@ import FirstIcon from '@material-ui/icons/SportsHandball';
 import {NavLink} from 'react-router-dom'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SettingsIcon from '@material-ui/icons/Settings';
+import PeopleIcon from '@material-ui/icons/People';
 import './listCss.scss'
 import { ThemeProvider, Divider, Typography } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
@@ -23,32 +24,32 @@ export const mainListItems = (
     <NavLink to="/all_challenges" activeClassName="main-nav-active" className="main-nav">
     <ListItem button className="principalButton" >
       <ListItemIcon >
-        <FirstIcon />
+        <FirstIcon htmlColor='#e61818' />
         </ListItemIcon>
         <Typography className={classes.typography} variant="h5"> Sfide!</Typography>
      </ListItem>
     </NavLink>
     <NavLink activeClassName="main-nav-active" className="main-nav" to="/user">
     <ListItem button className="principalButton">
-      <ListItemIcon>
-      <AccountCircleIcon />
+      <ListItemIcon >
+      <AccountCircleIcon  htmlColor='#ffeb00' />
         </ListItemIcon>
         <Typography variant="h5">Profilo</Typography>
     </ListItem></NavLink>
     <NavLink activeClassName="main-nav-active" className="main-nav" to="/friends_activity">
     <ListItem button className="principalButton">
       <ListItemIcon>
-        <SettingsIcon />
+        <PeopleIcon  htmlColor='#062bcf' />
       </ListItemIcon>
-      <Typography variant="h5">...</Typography>
+      <Typography variant="h5">Social</Typography>
     </ListItem></NavLink>
     <Divider />
     <NavLink activeClassName="main-nav-active" className="main-nav" to="/">
     <ListItem button className="principalButton">
       <ListItemIcon>
-        <HomeIcon />
+        <HomeIcon  htmlColor='#06c200'/>
       </ListItemIcon>
-      <Typography variant="h5"> start</Typography>
+      <Typography variant="h5">Home</Typography>
     </ListItem></NavLink>
   </div>
 );
