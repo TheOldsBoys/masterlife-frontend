@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import challengeRegister from './challengeRegister'
+import ImageUpload from '../net/imageUploader'
 
 import TextField from '@material-ui/core/TextField';
 import ReactPlayer from 'react-player';
@@ -47,18 +48,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
 export default function ChallengeUploadPanel({data}) {
   const classes = useStyles();
 
   const [validLink, setValidLink] = React.useState(true);
-  const [description, setDescription] = React.useState("");
-  const [imagelink, setImagelink] = React.useState("");
-  const [videolink, setVideolink] = React.useState("");
+  const [description, setDescription] = React.useState(data.user_challenge_description);
+  const [imageIsUploading, setImageIsUploading] = React.useState(false);
+  const [imageViewURL, setImageViewURL] = React.useState(null);
+  const [videolink, setVideolink] = React.useState(data.video_link);
   const [score, setScore] = React.useState(0);
  
   const isComplete = disable(data.completed_at)
+
+  const onImageUploading = (isUploading) => {
+    setImageIsUploading(isUploading);
+    alert(isUploading);
+  }
+  const onImageUploaded = (imageViewURL) => {
+    setImageViewURL(imageViewURL);
+    console.log(imageViewURL.data.url);
+  }
 
   function disable(completed_at){if(completed_at !== null) return true; else return false}
   
@@ -104,7 +113,7 @@ export default function ChallengeUploadPanel({data}) {
 
   function onSubmitClick(){
 if(!validLink)alert("Il link al video non sembra corretto!")
-else challengeRegister(isComplete, data.id,"immagine",videolink,description,data.reward)  
+else challengeRegister(isComplete, data.id,imageViewURL,videolink,description,data.reward)  
   }
 
   return (
@@ -136,6 +145,9 @@ else challengeRegister(isComplete, data.id,"immagine",videolink,description,data
               </Grid>
               <Grid key={6} item>                
                 {videoIfCompleted(data.video_link,data.completed_at,isComplete)}
+              </Grid>
+              <Grid key={5}>
+                <ImageUpload onUploading={onImageUploading} onUploaded={onImageUploaded}/>
               </Grid>
               <Grid key={4} item>
                 <Button

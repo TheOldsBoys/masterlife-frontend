@@ -7,7 +7,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
-import '../listCss.scss'
+import '../styles/listCss.scss'
 import ChallengeDetailsView from './challengeDetailsView'
 import CheckIcon from '@material-ui/icons/Check';
 import { Paper } from '@material-ui/core';
