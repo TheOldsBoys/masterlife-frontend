@@ -73,10 +73,19 @@ export default function ChallengeUploadPanel({data}) {
   function disable(completed_at){if(completed_at !== null) return true; else return false}
   
   function onVideoTextfieldChange(value){
-    const isValid = isValidLink(value)
+    let isValid = isValidLink(value)
+    let isNull = false
+
+    if
+      (value==="")
+        isNull=true
+
     setValidLink(isValid);
-    if(isValid) setVideolink(value)
+
+    if
+      (isValid && !isNull) setVideolink(value)
     else setVideolink(false)
+
   }
 
   const completed = (compl) => {
@@ -93,7 +102,7 @@ export default function ChallengeUploadPanel({data}) {
   function labelIfCompleted(description,label){if(isComplete)return description; else return label}
   function videoIfCompleted(videolink){
     var defaultVideoLink="Link al tuo video (+ 5 punti):";
-    if(videolink!=="")defaultVideoLink=videolink
+    if(videolink!==null)defaultVideoLink=videolink
 
     return(
     <TextField
