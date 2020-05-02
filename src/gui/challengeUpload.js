@@ -66,6 +66,7 @@ export default function ChallengeUploadPanel({data}) {
   }
   const onImageUploaded = (imageViewURL) => {
     setImageViewURL(imageViewURL);
+    setImageIsUploading(false)
     console.log(imageViewURL.data.url);
   }
 
@@ -112,6 +113,8 @@ export default function ChallengeUploadPanel({data}) {
   }
 
   function onSubmitClick(){
+if(imageIsUploading)alert("L'immagine che hai scelto si sta caricando!")
+else
 if(!validLink)alert("Il link al video non sembra corretto!")
 else challengeRegister(isComplete, data.id,imageViewURL,videolink,description,data.reward)  
   }
