@@ -35,7 +35,8 @@ export default class ImageUpload extends React.Component {
                 pictures: picture,
                 uploadedPhotos: URLS,
             });
-            
+        
+            this.onUploading(true);
         console.log(URLS)
     }
 
@@ -67,13 +68,15 @@ export default class ImageUpload extends React.Component {
                 })
                 .catch(error => {
                     console.error(error)
+                    
+            this.onUploading(false);
                 })
             }else {alert ('Nessuna immagine selezionata!')}
     }
  
     render() {
         var display="block";
-        if(this.state.loading || this.state.loaded)display="none"
+        if(this.state.loading || this.state.loaded) display="none"
         return (
             
             <div className="sweet-loading">
