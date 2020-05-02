@@ -30,14 +30,17 @@ export default class ImageUpload extends React.Component {
     }
 
 
-    onDrop(picture,URLS) {
-            this.setState({
-                pictures: picture,
-                uploadedPhotos: URLS,
-            });
-        
-            this.onUploading(true);
-        console.log(URLS)
+    onDrop(pictures, URLS) {
+        console.log(pictures)
+        if(pictures.length > 0){
+            this.onUploading(true)
+        }else{
+            this.onUploading(false)
+        }
+        this.setState({
+            pictures: pictures,
+            uploadedPhotos: URLS,
+        });
     }
 
     onUploadButtonClick(){
@@ -45,17 +48,15 @@ export default class ImageUpload extends React.Component {
             this.setState({
                 loading: true
             });
+            this.state.pictures.map((picture) => {
                 const formData = new FormData()
-                formData.append('image', this.state.pictures[0])
+                formData.append('image', picture)
                 formData.append('key','a3a3b278f015f612cc2020c26cb2e19d')
-
-
 
                 var options = {
                     method: "POST",
                     body: formData
                 };
-
                 fetch('https://api.imgbb.com/1/upload', options)
                 .then(response => response.json())
                 .then(data => {
@@ -68,17 +69,18 @@ export default class ImageUpload extends React.Component {
                 })
                 .catch(error => {
                     console.error(error)
-                    
-            this.onUploading(false);
                 })
-            }else {alert ('Nessuna immagine selezionata!')}
+            })
+            this.onUploading(false);
+        }else{
+            alert ('Nessuna immagine selezionata!')
+        }
     }
  
     render() {
         var display="block";
         if(this.state.loading || this.state.loaded) display="none"
         return (
-            
             <div className="sweet-loading">
                 <Box display={display}>
                         <ImageUploader
@@ -88,26 +90,23 @@ export default class ImageUpload extends React.Component {
                             onChange={this.onDrop}
                             imgExtension={['.jpg', '.gif', '.png', '.gif']}
                             maxFileSize={5242880}
-                            singleImage={true}
-
-
                         />
-                        <Button   
-                            
+                        <Button                
                             onClick={() => this.onUploadButtonClick()}
                             autoFocus color="primary">
                                 Carica le immagini
                             </Button>
                 </Box>
-        <ClipLoader
-        
-          css={override}
-          size={70}
-          color={"#123abc"}
-          loading={this.state.loading}
-        />
-        <SuccessUpload isVisible={this.state.loaded} />
-      </div>
+                
+                <ClipLoader
+                    css={override}
+                    size={70}
+                    color={"#123abc"}
+                    loading={this.state.loading}
+                />
+
+                <SuccessUpload isVisible={this.state.loaded} />
+            </div>
         );
     }
 }
