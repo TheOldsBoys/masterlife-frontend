@@ -4,10 +4,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import FirstIcon from '@material-ui/icons/SportsHandball';
 import {NavLink} from 'react-router-dom'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import SettingsIcon from '@material-ui/icons/Settings';
 import PeopleIcon from '@material-ui/icons/People';
-import './listCss.scss'
-import { ThemeProvider, Divider, Typography } from '@material-ui/core';
+import './styles/listCss.scss'
+import { Divider, Typography } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 const classes = () => ({
   root: {

@@ -39,6 +39,8 @@ function postTheChallenge(id,imagelink,videolink,description,score,onSuccess){
 
 
 function updateTheChallenge(id,imagelink,videolink,description,onSuccess){
+
+
           let details = {
               'imagelink':imagelink,
               'videolink':videolink,
@@ -47,9 +49,11 @@ function updateTheChallenge(id,imagelink,videolink,description,onSuccess){
 
           let formBody = [];
           for (let property in details) {
+            if(details[property]!==""){
               let encodedKey = encodeURIComponent(property);
               let encodedValue = encodeURIComponent(details[property]);
               formBody.push(encodedKey + "=" + encodedValue);
+            }
           }
           formBody = formBody.join("&");
 
@@ -76,6 +80,7 @@ function updateTheChallenge(id,imagelink,videolink,description,onSuccess){
 
 export default function challengeRegister(isUpdating,id,imagelink,videolink,description,score,onSuccess){
             var ok;
+            if(imagelink)imagelink=imagelink.data.url
           /* const options = {
                 title: 'Title',
                 message: 'Message',
