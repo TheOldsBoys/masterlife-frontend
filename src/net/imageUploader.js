@@ -20,7 +20,7 @@ export default class ImageUpload extends React.Component {
         super(props);
          this.state = { pictures: [],
                         uploadedPhotos: [],
-                        loading: false,
+                        loading: 0,
                         loaded: false
                         };
          this.onDrop = this.onDrop.bind(this);
@@ -31,8 +31,8 @@ export default class ImageUpload extends React.Component {
 
 
     onDrop(pictures, URLS) {
-        console.log(pictures)
-        if(pictures.length > 0){
+        console.log(pictures.length)
+        if(pictures.length!==0){
             this.onUploading(true)
         }else{
             this.onUploading(false)
@@ -45,8 +45,9 @@ export default class ImageUpload extends React.Component {
 
     onUploadButtonClick(){
         if(this.state.pictures.length!==0){
+
             this.setState({
-                loading: true
+                loading: this.state.pictures.length
             });
             this.state.pictures.map((picture) => {
                 const formData = new FormData()
@@ -61,17 +62,22 @@ export default class ImageUpload extends React.Component {
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
+                    let rest = this.state.loading-1;
+                    console.log("Un'immagine in meno ne mancano " + rest)
+                    let finishLoading=false;
+                    if(rest===0)finishLoading=true
+                    console.log('Ho finito di caricare?' + finishLoading)
                     this.setState({
-                        loading: false,
-                        loaded: true,
+                        loading: rest,
+                        loaded: finishLoading,
                     });
                     this.onUploaded(data);
+                    this.onUploading(rest)
                 })
                 .catch(error => {
                     console.error(error)
                 })
             })
-            this.onUploading(false);
         }else{
             alert ('Nessuna immagine selezionata!')
         }
@@ -102,7 +108,7 @@ export default class ImageUpload extends React.Component {
                     css={override}
                     size={70}
                     color={"#123abc"}
-                    loading={this.state.loading}
+                    loading={this.state.loading!==0}
                 />
 
                 <SuccessUpload isVisible={this.state.loaded} />

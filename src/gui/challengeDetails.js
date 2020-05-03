@@ -75,7 +75,10 @@ if(open){
   return (
     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        {selectedValue.name} ({selectedValue.reward} pt ) : {selectedValue.level}
+        {selectedValue.name}
+        <Typography variant='body1'>
+           ({selectedValue.reward} pt ) : {selectedValue.level}
+        </Typography>
       </DialogTitle>
       <DialogContent dividers>
         <Typography gutterBottom>

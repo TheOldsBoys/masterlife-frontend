@@ -52,9 +52,9 @@ export default function ChallengeUploadPanel({data}) {
   const classes = useStyles();
 
   const [validLink, setValidLink] = React.useState(true);
-  const [description, setDescription] = React.useState(data.user_challenge_description);
+  const [description, setDescription] = React.useState(data.user_challenge_description!==null ? data.user_challenge_description : "");
   const [imageIsUploading, setImageIsUploading] = React.useState(false);
-  const [imageViewURL, setImageViewURL] = React.useState(null);
+  const [imageViewURL, setImageViewURL] = React.useState([]);
   const [videolink, setVideolink] = React.useState(data.video_link);
   const [score, setScore] = React.useState(0);
  
@@ -62,12 +62,13 @@ export default function ChallengeUploadPanel({data}) {
 
   const onImageUploading = (isUploading) => {
     setImageIsUploading(isUploading);
-    alert(isUploading);
+    console.log('Sto caricando??????? '+isUploading)
   }
-  const onImageUploaded = (imageViewURL) => {
-    setImageViewURL(imageViewURL);
-    setImageIsUploading(false)
-    console.log(imageViewURL.data.url);
+  const onImageUploaded = (imageViewURLN) => {
+    let arrayofURLS = imageViewURL
+    arrayofURLS.push(imageViewURLN)
+    setImageViewURL(arrayofURLS);
+    console.log(imageViewURL)
   }
 
   function disable(completed_at){if(completed_at !== null) return true; else return false}
@@ -122,56 +123,61 @@ export default function ChallengeUploadPanel({data}) {
   }
 
   function onSubmitClick(){
-if(imageIsUploading)alert("L'immagine che hai scelto si sta caricando!")
-else
-if(!validLink)alert("Il link al video non sembra corretto!")
-else challengeRegister(isComplete, data.id,imageViewURL,videolink,description,data.reward)  
-  }
-
-  return (
-    <div className={classes.root}>
-      <ExpansionPanel >
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          {completed(isComplete)}
           
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <div className={classes.allWidht}>
-            <Grid key='0' container direction="column" spacing={2}> 
-              <Grid key={1} item>  Descrizione : </Grid>
-              <Grid key={2} item xs={12} sm={12}>              
-                <TextField
-                  className={classes.textField}
-                  id="description"
-                  defaultValue={labelIfCompleted(data.user_challenge_description,"",isComplete)}
-                  placeholder="Descrizione dello svolgimento"
-                  multiline
-                  variant="outlined"
-                  width='100%'
-                  onChange= {(e) => setDescription(e.target.value)}
-                />
-              </Grid>
-              <Grid key={6} item>                
-                {videoIfCompleted(data.video_link,data.completed_at,isComplete)}
-              </Grid>
-              <Grid key={5}>
-                <ImageUpload onUploading={onImageUploading} onUploaded={onImageUploaded}/>
-              </Grid>
-              <Grid key={4} item>
-                <Button
-                  onClick={onSubmitClick}
-                  autoFocus color="primary">
-                    Save changes
-                </Button>
-              </Grid>
-            </Grid>
+      if(imageIsUploading)
+            alert("L'immagine che hai scelto si sta caricando!")
+      else if(description==="")
+            alert("L'immagine che hai scelto si sta caricando!")
+      else if(!validLink)
+            alert("Il link al video non sembra corretto!")
+      else 
+            challengeRegister(isComplete, data.id,imageViewURL,videolink,description,data.reward)  
+        }
+
+        return (
+          <div className={classes.root}>
+            <ExpansionPanel >
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                {completed(isComplete)}
+                
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <div className={classes.allWidht}>
+                  <Grid key='0' container direction="column" spacing={2}> 
+                    <Grid key={1} item>  Descrizione : </Grid>
+                    <Grid key={2} item xs={12} sm={12}>              
+                      <TextField
+                        className={classes.textField}
+                        id="description"
+                        defaultValue={labelIfCompleted(data.user_challenge_description,"",isComplete)}
+                        placeholder="Descrizione dello svolgimento"
+                        multiline
+                        variant="outlined"
+                        width='100%'
+                        onChange= {(e) => setDescription(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid key={6} item>                
+                      {videoIfCompleted(data.video_link,data.completed_at,isComplete)}
+                    </Grid>
+                    <Grid key={5}>
+                      <ImageUpload onUploading={onImageUploading} onUploaded={onImageUploaded}/>
+                    </Grid>
+                    <Grid key={4} item>
+                      <Button
+                        onClick={onSubmitClick}
+                        autoFocus color="primary">
+                          Save changes
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </div>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
           </div>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    </div>
-  );
+        );
 }

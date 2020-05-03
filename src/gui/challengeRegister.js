@@ -23,6 +23,9 @@ function postTheChallenge(id,imagelink,videolink,description,score,onSuccess){
               body: formBody,
               credentials: 'include'
           };
+
+          console.log(formBody)
+
           fetch(process.env.REACT_APP_API +process.env.REACT_APP_API_v + 'challenges/'+id,requestOptions)
           .then(response =>{
               if (!response.ok) { throw response }
@@ -31,7 +34,7 @@ function postTheChallenge(id,imagelink,videolink,description,score,onSuccess){
               console.log(response.body)
                   })
           .catch( err => {
-                  console.log(err.status)
+                  alert(err.status)
               if(err.status===401)
                   alert("Attenzione: Username o password sbagliati")
                           })
@@ -80,7 +83,10 @@ function updateTheChallenge(id,imagelink,videolink,description,onSuccess){
 
 export default function challengeRegister(isUpdating,id,imagelink,videolink,description,score,onSuccess){
             var ok;
-            if(imagelink)imagelink=imagelink.data.url
+            var imagesOnlyLinks=[];
+            console.log(imagelink)
+            if(imagelink.length>0)imagelink.map(imageL => imagesOnlyLinks.push(imageL.data.url));
+            console.log(imagesOnlyLinks)
           /* const options = {
                 title: 'Title',
                 message: 'Message',
@@ -103,12 +109,17 @@ export default function challengeRegister(isUpdating,id,imagelink,videolink,desc
               };
               confirmAlert(options);*/
               var finalScore=0;
-              finalScore= score;
+
+              finalScore= parseInt(score);
+
               var add = 5;
-              if ( videolink!== ""){
-                alert("Bravo che hai caricato un video!")
-              }
-              if(isUpdating)updateTheChallenge(id,imagelink,videolink,description,onSuccess)
+
+              if ( videolink!== "" && videolink!== null){
+                    alert("Bravo che hai caricato un video!")
+                    finalScore=finalScore+add;
+                }
+
+              if(isUpdating)updateTheChallenge(id,imagesOnlyLinks,videolink,description,onSuccess)
               else
-              postTheChallenge(id,imagelink,videolink,description,score,onSuccess);
+              postTheChallenge(id,imagesOnlyLinks,videolink,description,finalScore,onSuccess);
 }

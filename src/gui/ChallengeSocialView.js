@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core';
 import {isValidLink} from '../functionValidate'
+import Carousel from 'react-material-ui-carousel';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -75,16 +76,35 @@ export default function ChallengeUserView({data}){
         width='100%'
       />
         )}
-    
-    const ImageView = () =>{
-        if(isValidLink(data.images_link))return(
-          <CardMedia
-                className={classes.media}
-                image={data.images_link}
-                title="Immagini"
-                  />)
-        else return null;
+
+    const ImageCard = (props) =>{
+        //if(isValidLink(props))
+            return(
+              <CardMedia
+                    className={classes.media}
+                    image={props}
+                    title="Immagini"
+                      />)
+       // else return null;
     }
+    const ImageView = (images) => {
+      const arrayofImages = images.split(',')
+      console.log('-----fetched images--------')
+      console.log(arrayofImages)
+      if(isValidLink(arrayofImages))
+          return ImageCard(images)
+      else if(arrayofImages.length>0)
+          return(
+                    <Carousel>
+                    {
+                        arrayofImages.map( item => {
+                          console.log(item)
+                            return ImageCard(item)
+                        })
+                    }
+                    </Carousel>
+              )
+         }
 console.log(data.video_link)
 console.log(data.images_link)
     return (
@@ -96,7 +116,7 @@ console.log(data.images_link)
             </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                {ImageView()}
+                {ImageView(data.images_link)}
                 <CardContent>   
                         {data.user_challenge_description}
                 </CardContent>
