@@ -45,6 +45,12 @@ const theme = createMuiTheme({
       fontWeightRegular:300,
       fontSize:13
     },
+    h6:{
+      [defaultTheme.breakpoints.down('sm')]: {
+        lineHeight: 1.2,
+        fontSize: 20
+      }
+    },
     body2:{
       fontSize:17,
       [defaultTheme.breakpoints.down('sm')]: {

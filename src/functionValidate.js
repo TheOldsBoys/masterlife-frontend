@@ -22,7 +22,7 @@ export function isValidPW(val){}
 export function isValidLink(val,setLinkValidator){
     var errors = validate({website: val}, {website: {url: true}});
 
-    if(errors && val!==""){
+    if(errors){
         console.log(errors)
         return false
     }
