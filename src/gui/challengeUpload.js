@@ -57,6 +57,8 @@ export default function ChallengeUploadPanel({data}) {
   const [imageViewURL, setImageViewURL] = React.useState([]);
   const [videolink, setVideolink] = React.useState(data.video_link);
   const [score, setScore] = React.useState(0);
+  const [descriptionError, setdescriptionError] = React.useState(false);
+
  
   const isComplete = disable(data.completed_at)
 
@@ -124,14 +126,16 @@ export default function ChallengeUploadPanel({data}) {
 
   function onSubmitClick(){
           
-      if(imageIsUploading)
-            alert("L'immagine che hai scelto si sta caricando!")
-      else if(description==="")
-            alert("L'immagine che hai scelto si sta caricando!")
-      else if(!validLink)
-            alert("Il link al video non sembra corretto!")
-      else 
-            challengeRegister(isComplete, data.id,imageViewURL,videolink,description,data.reward)  
+            if(imageIsUploading)
+                  alert("L'immagine che hai scelto si sta caricando!")
+            else if(description===""){
+                  alert("Scrivi qualcosa nella descrizione!")
+                  setdescriptionError(true)
+            }
+            else if(!validLink)
+                  alert("Il link al video non sembra corretto!")
+            else 
+                  challengeRegister(isComplete, data.id,imageViewURL,videolink,description,data.reward)  
         }
 
         return (
@@ -158,6 +162,7 @@ export default function ChallengeUploadPanel({data}) {
                         multiline
                         variant="outlined"
                         width='100%'
+                        error={descriptionError}
                         onChange= {(e) => setDescription(e.target.value)}
                       />
                     </Grid>
@@ -165,7 +170,10 @@ export default function ChallengeUploadPanel({data}) {
                       {videoIfCompleted(data.video_link,data.completed_at,isComplete)}
                     </Grid>
                     <Grid key={5}>
-                      <ImageUpload onUploading={onImageUploading} onUploaded={onImageUploaded}/>
+                      <ImageUpload 
+                      onUploading={onImageUploading}
+                      onUploaded={onImageUploaded}
+                      photos={data.images_link} />
                     </Grid>
                     <Grid key={4} item>
                       <Button
