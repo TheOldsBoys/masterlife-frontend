@@ -18,10 +18,16 @@ export default class ImageUpload extends React.Component {
  
     constructor(props) {
         super(props);
+        let oldImages
+        if(props.photos!==null)
+                oldImages=props.photos.split(',')
+        else 
+                oldImages=false
          this.state = { pictures: [],
                         uploadedPhotos: [],
                         loading: 0,
-                        loaded: false
+                        loaded: false,
+                        oldImages : oldImages, 
                         };
          this.onDrop = this.onDrop.bind(this);
          this.onUploading = props.onUploading;
@@ -84,11 +90,13 @@ export default class ImageUpload extends React.Component {
     }
  
     render() {
-        var display="block";
-        if(this.state.loading || this.state.loaded) display="none"
+        var displayUploader="block";
+        var displayViewer="none";
+        if(this.state.loading || this.state.loaded || this.state.oldImages.length) displayUploader="none"
+        if(this.state.oldImages.length) displayViewer="block"
         return (
             <div className="sweet-loading">
-                <Box display={display}>
+                <Box display={displayUploader}>
                         <ImageUploader
                             withIcon={true}
                             withPreview={true}
@@ -102,6 +110,9 @@ export default class ImageUpload extends React.Component {
                             autoFocus color="primary">
                                 Carica le immagini
                             </Button>
+                </Box>
+                <Box display={displayViewer}>
+                    Il cambio delle immagini non è ancora supportato!
                 </Box>
                 
                 <ClipLoader
