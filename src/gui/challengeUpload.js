@@ -11,10 +11,12 @@ import challengeRegister from './challengeRegister'
 import ImageUpload from '../net/imageUploader'
 
 import TextField from '@material-ui/core/TextField';
-import ReactPlayer from 'react-player';
 import InfoYoutube from './InfoYoutube'
-import {InputAdornment, IconButton } from '@material-ui/core';
+import {InputAdornment, IconButton, Divider, Snackbar } from '@material-ui/core';
 import {isValidLink} from '../functionValidate'
+import AlertMessage from '../common/AlertMessage';
+import {showSuccessSnackbar} from '../common/snackbarActions'
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,9 +60,9 @@ export default function ChallengeUploadPanel({data}) {
   const [videolink, setVideolink] = React.useState(data.video_link);
   const [score, setScore] = React.useState(0);
   const [descriptionError, setdescriptionError] = React.useState(false);
-
- 
   const isComplete = disable(data.completed_at)
+
+  const dispatch = useDispatch();
 
   const onImageUploading = (isUploading) => {
     setImageIsUploading(isUploading);
@@ -109,10 +111,12 @@ export default function ChallengeUploadPanel({data}) {
 
     return(
     <TextField
+                    className={classes.textField}
                     id="video"
                     label={defaultVideoLink}
                     error={!validLink}
                     onChange={(e) => onVideoTextfieldChange(e.target.value)}
+                    xs={12}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -126,8 +130,11 @@ export default function ChallengeUploadPanel({data}) {
 
   function onSubmitClick(){
           
-            if(imageIsUploading)
-                  alert("L'immagine che hai scelto si sta caricando!")
+    dispatch(showSuccessSnackbar("il primo messaggio!!"))
+            if(imageIsUploading){
+              alert("le immagini stanno caricando")
+
+                }
             else if(description===""){
                   alert("Scrivi qualcosa nella descrizione!")
                   setdescriptionError(true)
@@ -140,6 +147,9 @@ export default function ChallengeUploadPanel({data}) {
 
         return (
           <div className={classes.root}>
+             
+            <AlertMessage />
+
             <ExpansionPanel >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -151,7 +161,7 @@ export default function ChallengeUploadPanel({data}) {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <div className={classes.allWidht}>
-                  <Grid key='0' container direction="column" spacing={2}> 
+                  <Grid key='0' container direction="row" spacing={2}> 
                     <Grid key={1} item>  Descrizione : </Grid>
                     <Grid key={2} item xs={12} sm={12}>              
                       <TextField
@@ -161,25 +171,33 @@ export default function ChallengeUploadPanel({data}) {
                         placeholder="Descrizione dello svolgimento"
                         multiline
                         variant="outlined"
-                        width='100%'
                         error={descriptionError}
                         onChange= {(e) => setDescription(e.target.value)}
                       />
                     </Grid>
-                    <Grid key={6} item>                
+                    <Divider/>
+                    <Grid key={3} lg={3} item>  Link a un video : </Grid>
+                    <Grid key={4} lg={9} sm={12}  item>                
                       {videoIfCompleted(data.video_link,data.completed_at,isComplete)}
                     </Grid>
-                    <Grid key={5}>
+                    <Divider/>
+                    <Grid key={5} xs={12} lg={3} item>Le tue immagini : </Grid>
+                    <Grid key={6} xs={12} lg={9} item>
                       <ImageUpload 
+                       justify='flex-end'
                       onUploading={onImageUploading}
                       onUploaded={onImageUploaded}
-                      photos={data.images_link} />
+                      photos={data.images_link}
+                      />
                     </Grid>
-                    <Grid key={4} item>
+                    <Grid key={7} xs={12} item>
+                    <Divider/>
                       <Button
+                      fullWidth={true}
+                        variant="contained"
                         onClick={onSubmitClick}
                         autoFocus color="primary">
-                          Save changes
+                          SALVA!
                       </Button>
                     </Grid>
                   </Grid>

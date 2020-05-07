@@ -96,7 +96,7 @@ export default class ImageUpload extends React.Component {
         if(this.state.oldImages.length) displayViewer="block"
         return (
             <div className="sweet-loading">
-                <Box display={displayUploader}>
+                <Box display={displayUploader} alignContent='right'>
                         <ImageUploader
                             withIcon={true}
                             withPreview={true}
@@ -105,11 +105,15 @@ export default class ImageUpload extends React.Component {
                             imgExtension={['.jpg', '.gif', '.png', '.gif']}
                             maxFileSize={5242880}
                         />
-                        <Button                
-                            onClick={() => this.onUploadButtonClick()}
-                            autoFocus color="primary">
-                                Carica le immagini
-                            </Button>
+                        <Box display="flex" justifyContent="flex-end">
+                                <Button
+                            
+                                color='secondary'
+                                onClick={() => this.onUploadButtonClick()}
+                                autoFocus color="primary">
+                                    Carica le immagini
+                                </Button>
+                        </Box>
                 </Box>
                 <Box display={displayViewer}>
                     Il cambio delle immagini non è ancora supportato!

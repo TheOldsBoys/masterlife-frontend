@@ -76,23 +76,28 @@ export default function ChallengeDetailsView({open,onClose,selectedValue,onUpdat
 
 if(open && selectedValue.completed_at!==null){
   return (
-    <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        {selectedValue.name} ({selectedValue.reward} pt ) : {selectedValue.level}
-        <Typography variant='body2'>
-          ({selectedValue.description})
-        </Typography>
-      </DialogTitle>
-      <DialogContent dividers>
-        <ChallengeSocialView data={selectedValue}/>
-      </DialogContent>
-      <DialogActions>
-        <Button autoFocus onClick={handleClose} color="primary">
-          Chiudi
-        </Button>
-        <IconButton
-          onClick={()=> onUpdatingClick()}><SettingsIcon/></IconButton>
-      </DialogActions>
+    <Dialog 
+    onClose={handleClose} 
+    aria-labelledby="customized-dialog-title"
+    fullScreen={fullScreen} 
+    open={open}
+    maxWidth='lg'>
+            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                    {selectedValue.name} ({selectedValue.reward} pt ) : {selectedValue.level}
+                    <Typography variant='body2'>
+                      ({selectedValue.description})
+                    </Typography>
+                  </DialogTitle>
+                  <DialogContent dividers>
+                    <ChallengeSocialView data={selectedValue}/>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button autoFocus onClick={handleClose} color="primary">
+                      Chiudi
+                    </Button>
+                    <IconButton
+                      onClick={()=> onUpdatingClick()}><SettingsIcon/></IconButton>
+            </DialogActions>
     </Dialog>
   )} else return null
 }

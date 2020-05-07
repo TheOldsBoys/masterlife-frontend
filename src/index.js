@@ -4,6 +4,9 @@ import Dashboard from './Dashboard';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import isAuth from './Auth'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import uiManage from './common/uiManage'
 
 //import 'normalize.css'
 
@@ -17,15 +20,19 @@ import {
 //Settaggio environment var
 //if(process.env.NODE_ENV === 'development')
 
+const store = createStore(uiManage)
+
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/login" component={SignIn}/>
-        <Route path="/signup" component={SignUp}/>
-        <PrivateRoute path="/" component={Dashboard}/>
-      </Switch>
-    </BrowserRouter>
+    <Provider store={store}>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/login" component={SignIn}/>
+              <Route path="/signup" component={SignUp}/>
+              <PrivateRoute path="/" component={Dashboard}/>
+            </Switch>
+          </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

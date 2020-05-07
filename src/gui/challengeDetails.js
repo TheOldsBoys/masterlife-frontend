@@ -13,7 +13,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import ChallengeUploadPanel from './challengeUpload';
-import YoutubePlayer from './youtubePlayer'
 
 const styles = (theme) => ({
     root: {
@@ -73,24 +72,29 @@ export default function SimpleDialog({open,onClose,selectedValue}) {
 
 if(open){
   return (
-    <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-        {selectedValue.name}
-        <Typography variant='body1'>
-           ({selectedValue.reward} pt ) : {selectedValue.level}
-        </Typography>
-      </DialogTitle>
-      <DialogContent dividers>
-        <Typography gutterBottom>
-          {selectedValue.description}
-        </Typography>
-        <ChallengeUploadPanel data={selectedValue}/>
-      </DialogContent>
-      <DialogActions>
-        <Button autoFocus onClick={handleClose} color="primary">
-          Chiudi
-        </Button>
-      </DialogActions>
+    <Dialog onClose={handleClose} 
+        aria-labelledby="customized-dialog-title" 
+        fullScreen={fullScreen} 
+        open={open}
+        maxWidth='lg'>
+
+            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+              {selectedValue.name}
+              <Typography variant='body1'>
+                ({selectedValue.reward} pt ) : {selectedValue.level}
+              </Typography>
+            </DialogTitle>
+            <DialogContent dividers>
+              <Typography gutterBottom>
+                {selectedValue.description}
+              </Typography>
+              <ChallengeUploadPanel data={selectedValue}/>
+            </DialogContent>
+            <DialogActions>
+              <Button autoFocus onClick={handleClose} color="primary">
+                Chiudi
+              </Button>
+            </DialogActions>
     </Dialog>
   )} else return null
 }

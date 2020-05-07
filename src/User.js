@@ -47,8 +47,8 @@ export default class User extends React.Component{
                             <UserCard data={userObj}/> 
                         </Container>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Container maxWidth="sm">
+                    <Grid item xs={12} md={11}>
+                        <Container maxWidth="lg">
                             <UserCompletedChallenges challenges={this.state.userChallenges}/> 
                         </Container>
                     </Grid>

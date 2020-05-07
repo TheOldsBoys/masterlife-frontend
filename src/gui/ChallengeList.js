@@ -10,19 +10,21 @@ import Divider from '@material-ui/core/Divider';
 import '../styles/listCss.scss'
 import ChallengeDetails from './challengeDetails'
 import CheckIcon from '@material-ui/icons/Check';
-import { Paper } from '@material-ui/core';
+import { Paper, Box, useMediaQuery } from '@material-ui/core';
 import ChallengeDetailsView from './challengeDetailsView';
+import theme from '../siteTheme';
 
 const classes = makeStyles((theme) => ({
     root: {
       width: '100%',
       maxWidth: 360,
-      minWidth: '36ch',
+      minWidth: '80vw',
 //      backgroundColor: theme.palette.background.paper,
     },
   }));
 
 function renderChallengeListItem(entry, handleClickOpen){
+
  const ChallInfo =  "   ( " + entry.reward +"pt) : " + entry.level;
   const completed = (compl) => {
     if(compl !== null)
@@ -31,10 +33,13 @@ function renderChallengeListItem(entry, handleClickOpen){
  const Title =entry.name + ChallInfo
 
    if(entry.name !== "") return (  
+     
     <ListItem key={entry.id} onClick={() => handleClickOpen(entry)}>
-      <ListItemAvatar>
-        <ImageIcon color="primary"/>
-      </ListItemAvatar>
+     <Box display={{xs:'none',sm:'none' , md:'block'}} clone>
+        <ListItemAvatar >
+          <ImageIcon color="primary"/>
+        </ListItemAvatar>
+      </Box>  
       <ListItemText primary={Title} secondary={entry.description.substring(0,100)+ '...'} />
       <Divider orientation="vertical" flexItem />   
       <ListItemSecondaryAction>{completed(entry.completed_at)}</ListItemSecondaryAction>
