@@ -1,19 +1,31 @@
 import { confirmAlert } from 'react-confirm-alert'; // Import
 
-function postTheChallenge(id,imagelink,videolink,description,score,onSuccess){
+import {showSuccessSnackbar,showErrorSnackbar} from '../common/snackbarActions'
+import { useDispatch } from 'react-redux';
+
+
+function postTheChallenge(newChallenge,onSuccess){
+
+
+
           let details = {
-              'imagelink':imagelink,
-              'videolink':videolink,
-              'description':description,
-              'score':score
+              'imagelink':newChallenge.imageViewURL,
+              'videolink':newChallenge.videolink,
+              'description':newChallenge.description,
+              'score':newChallenge.score
           };
 
+
+          console.log('details::::::::')
+          console.log(details)
+
           let formBody = [];
-          for (let property in details) {
-              let encodedKey = encodeURIComponent(property);
-              let encodedValue = encodeURIComponent(details[property]);
-              formBody.push(encodedKey + "=" + encodedValue);
-          }
+          for (let property in details)
+              if(details[property]!==null) {
+                  let encodedKey = encodeURIComponent(property);
+                  let encodedValue = encodeURIComponent(details[property]);
+                  formBody.push(encodedKey + "=" + encodedValue);
+              }
           formBody = formBody.join("&");
 
         // Simple POST request with a JSON body using fetch
@@ -26,12 +38,11 @@ function postTheChallenge(id,imagelink,videolink,description,score,onSuccess){
 
           console.log(formBody)
 
-          fetch(process.env.REACT_APP_API +process.env.REACT_APP_API_v + 'challenges/'+id,requestOptions)
+          fetch(process.env.REACT_APP_API +process.env.REACT_APP_API_v + 'challenges/'+newChallenge.id,requestOptions)
           .then(response =>{
               if (!response.ok) { throw response }
-              alert('sfida caricata con successo');//we only get here if there is no error
-              window.location.reload();
               console.log(response.body)
+              onSuccess('sfida caricata con successo');//we only get here if there is no error
                   })
           .catch( err => {
                   alert(err.status)
@@ -41,18 +52,18 @@ function postTheChallenge(id,imagelink,videolink,description,score,onSuccess){
 }
 
 
-function updateTheChallenge(id,imagelink,videolink,description,onSuccess){
+function updateTheChallenge(newChallenge,onSuccess){
 
 
           let details = {
-              'imagelink':imagelink,
-              'videolink':videolink,
-              'description':description,
+              'imagelink':newChallenge.imageViewURL,
+              'videolink':newChallenge.videolink,
+              'description':newChallenge.description,
           };
 
           let formBody = [];
           for (let property in details) {
-            if(details[property]!==""){
+            if(details[property]!==null){
               let encodedKey = encodeURIComponent(property);
               let encodedValue = encodeURIComponent(details[property]);
               formBody.push(encodedKey + "=" + encodedValue);
@@ -67,12 +78,11 @@ function updateTheChallenge(id,imagelink,videolink,description,onSuccess){
               body: formBody,
               credentials: 'include'
           };
-          fetch(process.env.REACT_APP_API +process.env.REACT_APP_API_v + 'challenges/update/'+id,requestOptions)
+          fetch(process.env.REACT_APP_API +process.env.REACT_APP_API_v + 'challenges/update/'+newChallenge.id,requestOptions)
           .then(response =>{
               if (!response.ok) { throw response }
-              alert('sfida aggiornata con successo');//we only get here if there is no error
-              window.location.reload();
               console.log(response.body)
+              onSuccess('sfida aggiornata con successo');//we only get here if there is no error
                   })
           .catch( err => {
                   console.log(err.status)
@@ -81,11 +91,13 @@ function updateTheChallenge(id,imagelink,videolink,description,onSuccess){
                           })
 }
 
-export default function challengeRegister(isUpdating,id,imagelink,videolink,description,score,onSuccess){
+export default function challengeRegister(newChallenge,oldChallenge,score,onSuccess){
             var ok;
             var imagesOnlyLinks=[];
-            console.log(imagelink)
-            if(imagelink.length>0)imagelink.map(imageL => imagesOnlyLinks.push(imageL.data.url));
+            console.log('Primopassaggio')
+            console.log(newChallenge)
+            if(newChallenge.imageViewURL.lenght>0 )newChallenge.imageViewURL.map(imageL => imagesOnlyLinks.push(imageL.data.url));
+            newChallenge.imageViewURL=imagesOnlyLinks
             console.log(imagesOnlyLinks)
           /* const options = {
                 title: 'Title',
@@ -114,12 +126,17 @@ export default function challengeRegister(isUpdating,id,imagelink,videolink,desc
 
               var add = 5;
 
-              if ( videolink!== "" && videolink!== null){
-                    alert("Bravo che hai caricato un video!")
+              if ( newChallenge.videolink!== "" && newChallenge.videolink!== null){
                     finalScore=finalScore+add;
                 }
 
-              if(isUpdating)updateTheChallenge(id,imagesOnlyLinks,videolink,description,onSuccess)
+              if(newChallenge.imageViewURL==="")newChallenge.imageViewURL=null;
+
+              console.log('-------------------------')
+              console.log(newChallenge)
+
+              if(oldChallenge.isComplete)
+                    updateTheChallenge(newChallenge, onSuccess)
               else
-              postTheChallenge(id,imagesOnlyLinks,videolink,description,finalScore,onSuccess);
+                    postTheChallenge(newChallenge,onSuccess);
 }

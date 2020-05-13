@@ -2,20 +2,31 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
-import { Icon } from "@material-ui/core";
 import { clearSnackbar } from "./snackbarActions";
-import { connect } from 'react-redux'
-
 
 import CloseIcon from '@material-ui/icons/Close';
 
+import MuiAlert from '@material-ui/lab/Alert';
+import { withStyles } from '@material-ui/core';
 
-const AlertMessage = () =>{
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+
+const StyledSnackbar = withStyles({
+              root: {
+                bottom:10
+              }
+          })(Snackbar)
+
+
+const SuccessMessage = () =>{
 
     const dispatch = useDispatch();
 
-  const { successSnackbarMessage, successSnackbarOpen } = useSelector(
-    state => state.ui
+  const { snackbarMessage, snackbarOpen , severity } = useSelector(
+    state => state
   );
 
   function handleClose() {
@@ -23,28 +34,30 @@ const AlertMessage = () =>{
   }
 
     return(
-            <Snackbar
-                    color='secondary'
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
+            <StyledSnackbar
+                color='error'
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
                     }}
-                    open={successSnackbarOpen}
-                    autoHideDuration={6000}
-                    onClose={handleClose}
-                    message={<span id="client-snackbar">
-                    <Icon>check_circle</Icon>
-                        {successSnackbarMessage}
-                  </span>}
+                
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={handleClose} >
+                    
+                <Alert 
+                    id="client-snackbar" 
+                    severity={severity}
                     action={
                         <React.Fragment>
                         <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
                             <CloseIcon fontSize="small" />
                         </IconButton>
-                        </React.Fragment>
-                            }
-                    />
+                        </React.Fragment>}>
+                        {snackbarMessage}
+                </Alert>
+            </StyledSnackbar>
     )
 }
 
-export default connect()(AlertMessage)
+export default (SuccessMessage)

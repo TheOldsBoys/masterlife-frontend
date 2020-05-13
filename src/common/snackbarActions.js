@@ -1,13 +1,12 @@
 // actions/snackbarActions.js
 export const showSuccessSnackbar = message => {
-    console.log('Show success snackbar')
-    return dispatch => {
-      dispatch({ type: "SNACKBAR_SUCCESS", message });
-    };
+  return { type: "SNACKBAR_SUCCESS", message };
+  };
+  
+export const showErrorSnackbar = message => {
+  return { type: "SNACKBAR_ERROR", message };
   };
   
   export const clearSnackbar = () => {
-    return dispatch => {
-      dispatch({ type: "SNACKBAR_CLEAR" });
+    return { type: "SNACKBAR_CLEAR" };
     };
-  };

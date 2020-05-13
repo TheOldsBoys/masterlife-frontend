@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.9",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.52",
     "@mui-treasury/styles": "^1.1.0",
     "@react-native-community/google-signin": "^4.0.0",
     "@testing-library/jest-dom": "^4.2.4",

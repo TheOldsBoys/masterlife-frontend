@@ -33,6 +33,8 @@ import {dashboardTheme} from './siteTheme'
 import { ThemeProvider, Paper } from '@material-ui/core';
 import MainPage from './MainPage';
 
+import AlertMessage from './common/AlertMessage';
+
 function Copyright() {
   return (
   <div>
@@ -156,6 +158,9 @@ export default function Dashboard() {
     <div className={classes.root}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      
+      <AlertMessage />
+
       <AppBar position="absolute" className={clsx(classes.appBar)}>
         <Toolbar className={classes.toolbar}>
           <IconButton

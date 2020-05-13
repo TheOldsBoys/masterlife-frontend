@@ -14,8 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import InfoYoutube from './InfoYoutube'
 import {InputAdornment, IconButton, Divider, Snackbar } from '@material-ui/core';
 import {isValidLink} from '../functionValidate'
-import AlertMessage from '../common/AlertMessage';
-import {showSuccessSnackbar} from '../common/snackbarActions'
+import {showSuccessSnackbar,showErrorSnackbar} from '../common/snackbarActions'
 import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
@@ -53,14 +52,32 @@ const useStyles = makeStyles((theme) => ({
 export default function ChallengeUploadPanel({data}) {
   const classes = useStyles();
 
+  const oldChallenge={
+    id:data.id,
+    isComplete:disable(data.completed_at),
+    description:data.description,
+    videolink:data.video_link,
+    imageViewURL:Array.from(data.images_link),
+    score:0
+
+  };
+
+  const [newChallenge, setNewChallenge] = React.useState(oldChallenge);
+
   const [validLink, setValidLink] = React.useState(true);
-  const [description, setDescription] = React.useState(data.user_challenge_description!==null ? data.user_challenge_description : "");
   const [imageIsUploading, setImageIsUploading] = React.useState(false);
-  const [imageViewURL, setImageViewURL] = React.useState([]);
-  const [videolink, setVideolink] = React.useState(data.video_link);
-  const [score, setScore] = React.useState(0);
   const [descriptionError, setdescriptionError] = React.useState(false);
   const isComplete = disable(data.completed_at)
+
+  const updateField = (name,value) => {
+    setNewChallenge({
+      ...newChallenge,
+      [name]: value
+    });
+  };
+
+  var defaultVideoLink=null;
+  if(newChallenge.videolink!==null)defaultVideoLink=newChallenge.videolink
 
   const dispatch = useDispatch();
 
@@ -69,28 +86,25 @@ export default function ChallengeUploadPanel({data}) {
     console.log('Sto caricando??????? '+isUploading)
   }
   const onImageUploaded = (imageViewURLN) => {
-    let arrayofURLS = imageViewURL
+    let arrayofURLS = newChallenge.imageViewURL
     arrayofURLS.push(imageViewURLN)
-    setImageViewURL(arrayofURLS);
-    console.log(imageViewURL)
+    updateField('imageViewURL',arrayofURLS);
+    console.log(newChallenge.imageViewURL)
   }
 
   function disable(completed_at){if(completed_at !== null) return true; else return false}
   
-  function onVideoTextfieldChange(value){
-    let isValid = isValidLink(value)
-    let isNull = false
+  function onVideoTextfieldChange(event){
+    let isValid = isValidLink(event.target.value)
+    console.log(event.target.value)
 
     if
-      (value==="")
-        isNull=true
+      (event.target.value==="" || event.target.value===null)
+        isValid=true
 
-    setValidLink(isValid);
+      setValidLink(isValid);
 
-    if
-      (isValid && !isNull) setVideolink(value)
-    else setVideolink(false)
-
+      updateField('videolink',event.target.value)
   }
 
   const completed = (compl) => {
@@ -104,18 +118,15 @@ export default function ChallengeUploadPanel({data}) {
       return(<Typography className={classes.heading}>Carica la tua SFIDA!</Typography>)
   }
 
-  function labelIfCompleted(description,label){if(isComplete)return description; else return label}
-  function videoIfCompleted(videolink){
-    var defaultVideoLink="Link al tuo video (+ 5 punti):";
-    if(videolink!==null)defaultVideoLink=videolink
-
+  function videoTextfield(){
     return(
     <TextField
                     className={classes.textField}
                     id="video"
-                    label={defaultVideoLink}
+                    label="Link al tuo video (+ 5 punti):"
                     error={!validLink}
-                    onChange={(e) => onVideoTextfieldChange(e.target.value)}
+                    defaultValue={defaultVideoLink}
+                    onChange={onVideoTextfieldChange}
                     xs={12}
                     InputProps={{
                       endAdornment: (
@@ -128,28 +139,35 @@ export default function ChallengeUploadPanel({data}) {
     
   }
 
+  const onSuccess = (msg)=>{
+    dispatch(showSuccessSnackbar(msg))
+    setTimeout(
+      ()=>(window.location.reload()),
+    3000)
+  }
+
+
   function onSubmitClick(){
           
-    dispatch(showSuccessSnackbar("il primo messaggio!!"))
+    
             if(imageIsUploading){
-              alert("le immagini stanno caricando")
+                dispatch(showErrorSnackbar("le immagini stanno caricando"))
 
                 }
-            else if(description===""){
-                  alert("Scrivi qualcosa nella descrizione!")
+            else if(newChallenge.description===""){
+              dispatch(showErrorSnackbar("Scrivi qualcosa nella descrizione!"))
                   setdescriptionError(true)
             }
-            else if(!validLink)
-                  alert("Il link al video non sembra corretto!")
-            else 
-                  challengeRegister(isComplete, data.id,imageViewURL,videolink,description,data.reward)  
+            else if(!validLink )
+              dispatch(showErrorSnackbar("Il link al video non sembra corretto!"))
+            else {
+                  console.log(newChallenge)
+                  challengeRegister(newChallenge,oldChallenge, data.reward,onSuccess)  
+            }
         }
 
         return (
           <div className={classes.root}>
-             
-            <AlertMessage />
-
             <ExpansionPanel >
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -167,18 +185,18 @@ export default function ChallengeUploadPanel({data}) {
                       <TextField
                         className={classes.textField}
                         id="description"
-                        defaultValue={labelIfCompleted(data.user_challenge_description,"",isComplete)}
+                        defaultValue={data.user_challenge_description}
                         placeholder="Descrizione dello svolgimento"
                         multiline
                         variant="outlined"
                         error={descriptionError}
-                        onChange= {(e) => setDescription(e.target.value)}
+                        onChange= {(e) => updateField('description',e.target.value)}
                       />
                     </Grid>
                     <Divider/>
                     <Grid key={3} lg={3} item>  Link a un video : </Grid>
                     <Grid key={4} lg={9} sm={12}  item>                
-                      {videoIfCompleted(data.video_link,data.completed_at,isComplete)}
+                      {videoTextfield()}
                     </Grid>
                     <Divider/>
                     <Grid key={5} xs={12} lg={3} item>Le tue immagini : </Grid>
