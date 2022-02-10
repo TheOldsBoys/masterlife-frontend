@@ -16,7 +16,7 @@
     "express-favicon": "^2.0.1",
     "google-auth-library": "^6.0.0",
     "googleapis": "^48.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "normalize.css": "^8.0.1",
     "path": "^0.12.7",
     "querystring": "^0.2.0",
